@@ -1,0 +1,110 @@
+# ================================
+# Node.js / npm
+# ================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+package-lock.json
+
+# ================================
+# Next.js
+# ================================
+.next/
+out/
+.vercel
+
+# ================================
+# TypeScript
+# ================================
+*.tsbuildinfo
+next-env.d.ts
+
+# ================================
+# Build output
+# ================================
+build/
+dist/
+coverage/
+
+# ================================
+# Environment / Secrets
+# ================================
+.env
+.env.*
+!.env.example
+
+# ================================
+# Python
+# ================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+env/
+.venv/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.ipynb
+
+# ================================
+# Machine Learning / AI models
+# ================================
+*.model
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.gguf
+*.ggml
+models/
+checkpoints/
+runs/
+wandb/
+
+# HuggingFace cache
+.cache/
+huggingface/
+
+# ================================
+# Misc / OS
+# ================================
+.DS_Store
+Thumbs.db
+*.pem
+*.key
+*.crt
+*.p12
+certificates/
+
+# ================================
+# IDE / Editor
+# ================================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ================================
+# Logs
+# ================================
+logs/
+*.log
+
+# ================================
+# RAG Model / separate projects
+# ================================
+../RAG Model/
