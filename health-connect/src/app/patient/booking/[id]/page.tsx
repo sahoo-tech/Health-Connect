@@ -8,6 +8,14 @@ import Toast from "@/components/Toast";
 import { Booking, BookingStatus, PresetReason } from "@/lib/types";
 import { API_BASE } from "@/lib/api";
 
+const DEMO_PROVIDER = {
+    name: "Any available provider",
+    reg_no: "PRV-00001",
+    experience: "10+ years",
+    location: "Central Coordination Centre",
+    speciality: "General Consultation",
+};
+
 export default function PatientBookingDetail() {
     const router = useRouter();
     const params = useParams();
@@ -174,9 +182,14 @@ export default function PatientBookingDetail() {
                     <hr className="divider" />
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "8px" }}>
                         <div>
-                            <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px" }}>Patient Info <span style={{ marginLeft: "6px", padding: "2px 8px", borderRadius: "var(--radius-full)", background: "rgba(20,184,166,0.1)", color: "var(--accent-teal-light)", fontSize: "10px", letterSpacing: "0.02em", fontWeight: 500, textTransform: "none" }}>Demo</span></div>
+                            <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px" }}>Your Info</div>
                             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                                {[{ label: "Name", value: "Aryan Mehta" }, { label: "Phone", value: booking.user_phone || "+91 98765 43210" }, { label: "Age / Gender", value: "28 yrs · Male" }, { label: "Blood Group", value: "O+" }, { label: "City", value: "Bangalore, KA" }].map((row) => (
+                                {[
+                                    { label: "Name", value: booking.requester_name || "—" },
+                                    { label: "Phone", value: booking.user_phone || "—" },
+                                    { label: "Age / Gender", value: booking.requester_age && booking.requester_gender ? `${booking.requester_age} yrs · ${booking.requester_gender}` : "—" },
+                                    { label: "City", value: booking.requester_city || "—" },
+                                ].map((row) => (
                                     <div key={row.label} style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", borderBottom: "1px solid var(--border-subtle)", paddingBottom: "6px" }}>
                                         <span style={{ color: "var(--text-muted)" }}>{row.label}</span>
                                         <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>{row.value}</span>
@@ -185,16 +198,44 @@ export default function PatientBookingDetail() {
                             </div>
                         </div>
                         <div>
-                            <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px" }}>Doctor Info <span style={{ marginLeft: "6px", padding: "2px 8px", borderRadius: "var(--radius-full)", background: "rgba(168,85,247,0.1)", color: "var(--accent-purple)", fontSize: "10px", letterSpacing: "0.02em", fontWeight: 500, textTransform: "none" }}>Demo</span></div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                                {[{ label: "Name", value: "Dr. Priya Sharma" }, { label: "Speciality", value: "General Physician" }, { label: "Reg. No.", value: "MH-12345" }, { label: "Experience", value: "12 years" }, { label: "Clinic", value: "MedCare Clinic" }].map((row) => (
-                                    <div key={row.label} style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", borderBottom: "1px solid var(--border-subtle)", paddingBottom: "6px" }}>
-                                        <span style={{ color: "var(--text-muted)" }}>{row.label}</span>
-                                        <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>{row.value}</span>
-                                    </div>
-                                ))}
-                            </div>
+                            {(() => {
+                                const hasRealProviderData = !!(booking.provider_name || booking.provider_reg_no || booking.provider_location || booking.provider_experience);
+                                const provider = hasRealProviderData
+                                    ? {
+                                        name: booking.provider_name || "Any available",
+                                        reg_no: booking.provider_reg_no || "—",
+                                        experience: booking.provider_experience || "—",
+                                        location: booking.provider_location || "—",
+                                        speciality: booking.provider_speciality || "—",
+                                    }
+                                    : DEMO_PROVIDER;
+                                return (
+                                    <>
+                                        <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
+                                            Provider Preference
+                                            {!hasRealProviderData && (
+                                                <span style={{ fontSize: "10px", fontWeight: 600, letterSpacing: "0.05em", background: "rgba(14,165,233,0.13)", color: "var(--accent-teal)", border: "1px solid rgba(14,165,233,0.25)", borderRadius: "4px", padding: "1px 6px", textTransform: "uppercase" }}>Demo</span>
+                                            )}
+                                        </div>
+                                        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                                            {[
+                                                { label: "Service Type", value: provider.speciality },
+                                                { label: "Name", value: provider.name },
+                                                { label: "Ref. No.", value: provider.reg_no },
+                                                { label: "Experience", value: provider.experience },
+                                                { label: "Location", value: provider.location },
+                                            ].map((row) => (
+                                                <div key={row.label} style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", borderBottom: "1px solid var(--border-subtle)", paddingBottom: "6px" }}>
+                                                    <span style={{ color: "var(--text-muted)" }}>{row.label}</span>
+                                                    <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>{row.value}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </>
+                                );
+                            })()}
                         </div>
+
                     </div>
 
                     {canCancel && (

@@ -20,43 +20,40 @@ router.post("/", (req: Request, res: Response) => {
         userId,
         userPhone,
         slotDatetime,
-        patient_name,
-        patient_age,
-        patient_gender,
-        patient_blood_group,
-        patient_city,
-        doctor_name,
-        doctor_speciality,
-        doctor_reg_no,
-        doctor_experience,
-        doctor_clinic,
+        requester_name,
+        requester_age,
+        requester_gender,
+        requester_city,
+        provider_name,
+        provider_speciality,
+        provider_reg_no,
+        provider_experience,
+        provider_location,
     } = req.body;
 
     if (
         !userId ||
         !slotDatetime ||
-        !patient_name ||
-        !patient_age ||
-        !patient_gender ||
-        !patient_blood_group ||
-        !patient_city ||
-        !doctor_speciality
+        !requester_name ||
+        !requester_age ||
+        !requester_gender ||
+        !requester_city
     ) {
         res.status(400).json({ success: false, error: "Missing required fields" });
         return;
     }
 
+
     const booking = createBooking(userId, userPhone, slotDatetime, {
-        patient_name,
-        patient_age: Number(patient_age),
-        patient_gender,
-        patient_blood_group,
-        patient_city,
-        doctor_name: doctor_name || undefined,
-        doctor_speciality,
-        doctor_reg_no: doctor_reg_no || undefined,
-        doctor_experience: doctor_experience || undefined,
-        doctor_clinic: doctor_clinic || undefined,
+        requester_name,
+        requester_age: Number(requester_age),
+        requester_gender,
+        requester_city,
+        provider_name: provider_name || undefined,
+        provider_speciality,
+        provider_reg_no: provider_reg_no || undefined,
+        provider_experience: provider_experience || undefined,
+        provider_location: provider_location || undefined,
     });
 
     if (!booking) {

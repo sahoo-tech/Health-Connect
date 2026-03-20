@@ -85,7 +85,7 @@ export default function AdminLogin() {
                 </button>
                 <div style={{ textAlign: "center", marginTop: "24px" }}>
                     <a href="/login" style={{ color: "var(--text-muted)", fontSize: "13px", textDecoration: "none" }}>
-                        ← Patient login
+                        ← User login
                     </a>
                 </div>
             </div>

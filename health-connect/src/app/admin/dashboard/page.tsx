@@ -132,7 +132,7 @@ export default function AdminDashboard() {
                             {filter === "All" ? "No requests yet" : `No ${filter.toLowerCase()} requests`}
                         </div>
                         <div className="empty-state-text">
-                            {filter === "All" ? "Requests will appear here once patients submit them." : `Switch the filter to see other requests.`}
+                             {filter === "All" ? "Requests will appear here once users submit them." : `Switch the filter to see other requests.`}
                         </div>
                     </div>
                 ) : (

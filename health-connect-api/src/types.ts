@@ -32,14 +32,13 @@ export interface Booking {
     reason?: string;
     created_at: string;
     updated_at: string;
-    patient_name?: string;
-    patient_age?: number;
-    patient_gender?: string;
-    patient_blood_group?: string;
-    patient_city?: string;
-    doctor_name?: string;
-    doctor_speciality?: string;
-    doctor_reg_no?: string;
-    doctor_experience?: string;
-    doctor_clinic?: string;
+    requester_name?: string;
+    requester_age?: number;
+    requester_gender?: string;
+    requester_city?: string;
+    provider_name?: string;
+    provider_speciality?: string;
+    provider_reg_no?: string;
+    provider_experience?: string;
+    provider_location?: string;
 }

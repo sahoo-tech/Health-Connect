@@ -160,7 +160,7 @@ export default function AdminBookingDetail() {
                     <div className="section-title">Request details</div>
                     <div className="detail-grid">
                         <div className="detail-item">
-                            <div className="detail-label">Patient</div>
+                            <div className="detail-label">Requester</div>
                             <div className="detail-value">{booking.user_phone}</div>
                         </div>
                         <div className="detail-item">
@@ -187,14 +187,13 @@ export default function AdminBookingDetail() {
                     <hr className="divider" />
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "8px" }}>
                         <div>
-                            <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px" }}>Patient Info</div>
+                            <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px" }}>Requester Info</div>
                             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                                 {[
-                                    { label: "Name", value: booking.patient_name },
+                                    { label: "Name", value: booking.requester_name },
                                     { label: "Phone", value: booking.user_phone },
-                                    { label: "Age / Gender", value: booking.patient_age && booking.patient_gender ? `${booking.patient_age} yrs · ${booking.patient_gender}` : undefined },
-                                    { label: "Blood Group", value: booking.patient_blood_group },
-                                    { label: "City", value: booking.patient_city },
+                                    { label: "Age / Gender", value: booking.requester_age && booking.requester_gender ? `${booking.requester_age} yrs · ${booking.requester_gender}` : undefined },
+                                    { label: "City", value: booking.requester_city },
                                 ].map((row) => (
                                     <div key={row.label} style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", borderBottom: "1px solid var(--border-subtle)", paddingBottom: "6px" }}>
                                         <span style={{ color: "var(--text-muted)" }}>{row.label}</span>
@@ -204,14 +203,14 @@ export default function AdminBookingDetail() {
                             </div>
                         </div>
                         <div>
-                            <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px" }}>Doctor Preference</div>
+                            <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px" }}>Provider Preference</div>
                             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                                 {[
-                                    { label: "Speciality", value: booking.doctor_speciality },
-                                    { label: "Preferred Doctor", value: booking.doctor_name },
-                                    { label: "Reg. No.", value: booking.doctor_reg_no },
-                                    { label: "Experience", value: booking.doctor_experience },
-                                    { label: "Clinic", value: booking.doctor_clinic },
+                                    { label: "Service Type", value: booking.provider_speciality },
+                                    { label: "Preferred Provider", value: booking.provider_name },
+                                    { label: "Ref. No.", value: booking.provider_reg_no },
+                                    { label: "Experience", value: booking.provider_experience },
+                                    { label: "Location", value: booking.provider_location },
                                 ].map((row) => (
                                     <div key={row.label} style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", borderBottom: "1px solid var(--border-subtle)", paddingBottom: "6px" }}>
                                         <span style={{ color: "var(--text-muted)" }}>{row.label}</span>
@@ -275,7 +274,7 @@ export default function AdminBookingDetail() {
                     <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: "600px" }}>
                         <div className="modal-title">Suggest a new slot</div>
                         <p style={{ color: "var(--text-secondary)", marginBottom: "20px" }}>
-                            Pick an available time to offer the patient.
+                            Pick an available time to offer the requester.
                         </p>
                         <SlotPicker onSelect={setNewSlot} selectedSlot={newSlot} />
                         <div className="modal-actions">
@@ -308,7 +307,7 @@ export default function AdminBookingDetail() {
                             <div className="modal-title" style={{ marginBottom: 0 }}>Reject this request?</div>
                         </div>
                         <p style={{ color: "var(--text-secondary)", marginBottom: "20px", fontSize: "14px" }}>
-                            The patient will be notified with the reason you provide.
+                            The requester will be notified with the reason you provide.
                         </p>
                         <div className="form-group">
                             <label className="form-label">Reason for rejection</label>
