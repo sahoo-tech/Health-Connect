@@ -35,8 +35,6 @@ export default function BookPage() {
     const [user, setUser] = useState<{ id: string; phone_number: string } | null>(null);
     const [toast, setToast] = useState<{ message: string; type: "success" | "error" | "info" } | null>(null);
 
-    // Provider preference panel
-    const [providerPanelOpen, setProviderPanelOpen] = useState(false);
 
     // Requester fields
     const [requesterName, setRequesterName] = useState("");
@@ -183,6 +181,71 @@ export default function BookPage() {
                     </div>
                 </div>
 
+                <div className="card" style={{ marginBottom: "24px" }}>
+                    <div className="card-header">
+                        <div className="card-title">
+                            Provider Preference <span style={{ fontSize: "10px", fontWeight: 600, background: "rgba(14,165,233,0.13)", color: "var(--accent-teal)", border: "1px solid rgba(14,165,233,0.25)", borderRadius: "4px", padding: "2px 6px", letterSpacing: "0.05em", textTransform: "uppercase", marginLeft: "12px", verticalAlign: "middle" }}>Optional</span>
+                        </div>
+                        <div className="card-description">If left blank, default system info will be populated for the session</div>
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                        <div className="form-group">
+                            <label className="form-label">Service Type</label>
+                            <select
+                                className="form-input"
+                                value={providerSpeciality}
+                                onChange={(e) => setProviderSpeciality(e.target.value)}
+                            >
+                                <option value="">Select service type</option>
+                                {SERVICE_TYPES.map((s) => (
+                                    <option key={s} value={s}>{s}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Preferred Name</label>
+                            <input
+                                type="text"
+                                className="form-input"
+                                placeholder="e.g. Any available"
+                                value={providerName}
+                                onChange={(e) => setProviderName(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">ID / Ref. No.</label>
+                            <input
+                                type="text"
+                                className="form-input"
+                                placeholder="e.g. PRV-12345"
+                                value={providerRegNo}
+                                onChange={(e) => setProviderRegNo(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Location / Centre</label>
+                            <input
+                                type="text"
+                                className="form-input"
+                                placeholder="e.g. Wellness Centre"
+                                value={providerLocation}
+                                onChange={(e) => setProviderLocation(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-group" style={{ gridColumn: "1 / -1" }}>
+                            <label className="form-label">Years of Experience</label>
+                            <input
+                                type="text"
+                                className="form-input"
+                                placeholder="e.g. 10+ years"
+                                value={providerExperience}
+                                onChange={(e) => setProviderExperience(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                </div>
+
                 <div className="card">
                     <div className="card-header">
                         <div className="card-title">
@@ -231,169 +294,6 @@ export default function BookPage() {
                 </div>
             </div>
 
-            {/* ── Floating Provider Preference Panel ── */}
-            <div style={{
-                position: "fixed",
-                bottom: "24px",
-                right: "24px",
-                zIndex: 1000,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
-                gap: "8px",
-            }}>
-                {/* Expanded panel */}
-                {providerPanelOpen && (
-                    <div style={{
-                        width: "320px",
-                        maxHeight: "440px",
-                        overflowY: "auto",
-                        background: "var(--bg-card)",
-                        border: "1px solid var(--border-medium)",
-                        borderRadius: "var(--radius)",
-                        boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
-                        padding: "20px",
-                        animation: "fadeInUp 180ms ease",
-                    }}>
-                        {/* Header row */}
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
-                            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="9" cy="7" r="4"/>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                                </svg>
-                                <span style={{ fontSize: "13px", fontWeight: 600, color: "var(--text-primary)" }}>Provider Preference</span>
-                                <span style={{ fontSize: "10px", fontWeight: 600, background: "rgba(14,165,233,0.13)", color: "var(--accent-teal)", border: "1px solid rgba(14,165,233,0.25)", borderRadius: "4px", padding: "1px 6px", letterSpacing: "0.05em", textTransform: "uppercase" }}>Optional</span>
-                            </div>
-                            <button
-                                onClick={() => setProviderPanelOpen(false)}
-                                style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-muted)", padding: "2px", display: "flex", alignItems: "center" }}
-                            >
-                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                                    <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-                                </svg>
-                            </button>
-                        </div>
-
-                        {/* Disclaimer note */}
-                        <div style={{
-                            background: "rgba(14,165,233,0.07)",
-                            border: "1px solid rgba(14,165,233,0.2)",
-                            borderRadius: "var(--radius-sm)",
-                            padding: "8px 12px",
-                            marginBottom: "16px",
-                            fontSize: "11.5px",
-                            color: "var(--text-secondary)",
-                            lineHeight: "1.5",
-                        }}>
-                            ℹ️ If this form is not filled, <strong>demo data</strong> will be shown in your booking details.
-                        </div>
-
-                        {/* Form fields */}
-                        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                            <div className="form-group" style={{ marginBottom: 0 }}>
-                                <label className="form-label" style={{ fontSize: "11px" }}>Service Type</label>
-                                <select
-                                    className="form-input"
-                                    style={{ fontSize: "13px", padding: "8px 10px" }}
-                                    value={providerSpeciality}
-                                    onChange={(e) => setProviderSpeciality(e.target.value)}
-                                >
-                                    <option value="">Select service type</option>
-                                    {SERVICE_TYPES.map((s) => (
-                                        <option key={s} value={s}>{s}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            <div className="form-group" style={{ marginBottom: 0 }}>
-                                <label className="form-label" style={{ fontSize: "11px" }}>Preferred Provider Name</label>
-                                <input
-                                    type="text"
-                                    className="form-input"
-                                    style={{ fontSize: "13px", padding: "8px 10px" }}
-                                    placeholder="e.g. Any available"
-                                    value={providerName}
-                                    onChange={(e) => setProviderName(e.target.value)}
-                                />
-                            </div>
-
-                            <div className="form-group" style={{ marginBottom: 0 }}>
-                                <label className="form-label" style={{ fontSize: "11px" }}>Provider ID / Ref. No.</label>
-                                <input
-                                    type="text"
-                                    className="form-input"
-                                    style={{ fontSize: "13px", padding: "8px 10px" }}
-                                    placeholder="e.g. PRV-12345"
-                                    value={providerRegNo}
-                                    onChange={(e) => setProviderRegNo(e.target.value)}
-                                />
-                            </div>
-
-                            <div className="form-group" style={{ marginBottom: 0 }}>
-                                <label className="form-label" style={{ fontSize: "11px" }}>Preferred Location / Centre</label>
-                                <input
-                                    type="text"
-                                    className="form-input"
-                                    style={{ fontSize: "13px", padding: "8px 10px" }}
-                                    placeholder="e.g. MedCare Centre, Mumbai"
-                                    value={providerLocation}
-                                    onChange={(e) => setProviderLocation(e.target.value)}
-                                />
-                            </div>
-
-                            <div className="form-group" style={{ marginBottom: 0 }}>
-                                <label className="form-label" style={{ fontSize: "11px" }}>Years of Experience Preferred</label>
-                                <input
-                                    type="text"
-                                    className="form-input"
-                                    style={{ fontSize: "13px", padding: "8px 10px" }}
-                                    placeholder="e.g. 10+ years"
-                                    value={providerExperience}
-                                    onChange={(e) => setProviderExperience(e.target.value)}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                {/* Toggle pill button */}
-                <button
-                    onClick={() => setProviderPanelOpen((v) => !v)}
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                        background: providerFilled ? "var(--accent-teal)" : "var(--bg-card)",
-                        color: providerFilled ? "#fff" : "var(--text-primary)",
-                        border: providerFilled ? "none" : "1px solid var(--border-medium)",
-                        borderRadius: "999px",
-                        padding: "10px 18px",
-                        fontSize: "13px",
-                        fontWeight: 600,
-                        cursor: "pointer",
-                        boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
-                        transition: "all 200ms",
-                        whiteSpace: "nowrap",
-                    }}
-                >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                    Provider Preference
-                    {providerFilled && (
-                        <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#fff", opacity: 0.85, display: "inline-block" }} />
-                    )}
-                    {!providerFilled && (
-                        <span style={{ fontSize: "10px", fontWeight: 600, background: "rgba(14,165,233,0.13)", color: "var(--accent-teal)", border: "1px solid rgba(14,165,233,0.3)", borderRadius: "4px", padding: "1px 6px", letterSpacing: "0.05em", textTransform: "uppercase" }}>optional</span>
-                    )}
-                </button>
-            </div>
 
             {toast && (
                 <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />
