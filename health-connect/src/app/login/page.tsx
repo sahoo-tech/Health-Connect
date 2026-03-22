@@ -125,6 +125,9 @@ export default function LoginPage() {
                     Health <span>Connect</span>
                 </h1>
                 <p>Book your appointment, track every update</p>
+                <div style={{ marginTop: "16px", fontSize: "12px", color: "var(--text-secondary)", background: "var(--bg-card)", padding: "8px 12px", borderRadius: "8px", border: "1px dashed var(--border-medium)", display: "inline-block" }}>
+                    <strong>Note:</strong> This is a demo. Only Member and Admin logins are active.
+                </div>
             </div>
 
             <div className="card">

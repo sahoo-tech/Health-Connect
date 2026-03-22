@@ -141,6 +141,7 @@ export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
 
   const goToSlide = useCallback(
     (index: number) => {
@@ -230,13 +231,13 @@ export default function HomePage() {
             <span className="hero-tag">{slide.tag}</span>
             <h1 className="hero-title">{slide.title}</h1>
             <p className="hero-subtitle">{slide.subtitle}</p>
-            <Link href="/login" className="hero-cta">
+            <a href="#" onClick={(e) => { e.preventDefault(); setShowComingSoon(true); }} className="hero-cta">
               {slide.cta}
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
               </svg>
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -290,13 +291,13 @@ export default function HomePage() {
                 <div className="service-icon">{svc.icon}</div>
                 <h3 className="service-title">{svc.title}</h3>
                 <p className="service-desc">{svc.description}</p>
-                <Link href="/login" className="service-link">
+                <a href="#" onClick={(e) => { e.preventDefault(); setShowComingSoon(true); }} className="service-link">
                   Book Now
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </Link>
+                </a>
               </div>
             ))}
           </div>
@@ -346,13 +347,13 @@ export default function HomePage() {
                   Ongoing research and academic contributions
                 </li>
               </ul>
-              <Link href="/login" className="btn-home-primary">
+              <a href="#" onClick={(e) => { e.preventDefault(); setShowComingSoon(true); }} className="btn-home-primary">
                 Book a Specialist
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -450,13 +451,13 @@ export default function HomePage() {
                   Digital records & coordination history
                 </li>
               </ul>
-              <Link href="/login" className="btn-home-primary">
+              <a href="#" onClick={(e) => { e.preventDefault(); setShowComingSoon(true); }} className="btn-home-primary">
                 Get Started — It's Free
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
-              </Link>
+              </a>
             </div>
             <div className="split-image">
               <Image
@@ -554,13 +555,13 @@ export default function HomePage() {
             Join thousands of members who manage their wellness digitally with Health Connect.
           </p>
           <div className="cta-actions">
-            <Link href="/login" className="btn-home-primary large">
+            <a href="#" onClick={(e) => { e.preventDefault(); setShowComingSoon(true); }} className="btn-home-primary large">
               Book Your Appointment
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
               </svg>
-            </Link>
+            </a>
             <a href="tel:1800-HC-HELP" className="btn-home-outline large">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 5c-.11-1.09.63-2.17 1.81-2.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.09a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -570,6 +571,29 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {showComingSoon && (
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.5)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 9999, backdropFilter: "blur(4px)" }}>
+          <div style={{ background: "var(--bg-card)", padding: "32px", borderRadius: "16px", maxWidth: "400px", width: "90%", textAlign: "center", boxShadow: "0 20px 40px rgba(0,0,0,0.2)", animation: "fadeInUp 0.3s ease" }}>
+            <div style={{ width: "48px", height: "48px", background: "rgba(14,165,233,0.1)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", color: "var(--accent-teal)" }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <h3 style={{ fontSize: "20px", fontWeight: 700, marginBottom: "8px", color: "var(--text-primary)" }}>Feature Coming Soon</h3>
+            <p style={{ fontSize: "14px", color: "var(--text-secondary)", marginBottom: "16px", lineHeight: 1.5 }}>
+              We're currently fine-tuning this feature to bring you the best wellness experience. Please check back later!
+            </p>
+            <div style={{ background: "rgba(14,165,233,0.07)", padding: "12px", borderRadius: "8px", border: "1px solid rgba(14,165,233,0.2)", marginBottom: "24px", fontSize: "12px", color: "var(--text-secondary)", lineHeight: 1.4 }}>
+              <strong>Note:</strong> For demo purposes, only the <strong>Member Portal</strong> and <strong>Admin Login</strong> features are currently active. You can access them via the navigation menu or footer.
+            </div>
+            <button onClick={() => setShowComingSoon(false)} style={{ width: "100%", padding: "12px", borderRadius: "8px", background: "var(--accent-teal)", color: "#fff", border: "none", fontWeight: 600, cursor: "pointer", transition: "all 0.2s" }}>
+              Got it, thanks!
+            </button>
+          </div>
+        </div>
+      )}
 
       <footer className="home-footer">
         <div className="home-section-inner">
