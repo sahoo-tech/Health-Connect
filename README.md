@@ -57,19 +57,16 @@ sequenceDiagram
     participant U as User (UI)
     participant F as Frontend (Next.js)
     participant B as Backend API (Express)
-    participant DB as Database Subsystem
     
-    U->>F: Navigate to /patient/book/page
+    U->>F: Navigate to /requester/book/page
     F->>B: GET /api/v1/slots
-    B->>DB: Query open slots
-    DB-->>B: Return slots
+    B->>B: Query open slots (In-Memory)
     B-->>F: Available slots JSON
     F-->>U: Render interactive calendar
     U->>F: Select Slot & Confirm
     F->>B: POST /api/v1/bookings
     B->>B: Validate via Schedule Optimizer
-    B->>DB: Reserve Slot
-    DB-->>B: Confirmation
+    B->>B: Reserve Slot (In-Memory)
     B-->>F: 200 OK (Booking Detail)
     F-->>U: Show Success Screen / Receipt
 ```
