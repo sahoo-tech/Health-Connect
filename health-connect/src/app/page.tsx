@@ -7,26 +7,26 @@ import Image from "next/image";
 const SLIDES = [
   {
     image: "/home/banner1.png",
-    tag: "World-Class Healthcare",
+    tag: "Holistic Care Network",
     title: "Advanced Care,\nClose to Home",
     subtitle:
-      "Health Connect brings specialist-grade medical care to your fingertips — book, track, and manage your health journey with ease.",
-    cta: "Book an Appointment",
+      "Health Connect brings premium wellness support to your fingertips — book, track, and manage your health journey with ease.",
+    cta: "Book a Consultation",
   },
   {
     image: "/home/banner2.png",
-    tag: "Compassionate Doctors",
-    title: "Your Health,\nOur Priority",
+    tag: "Compassionate Specialists",
+    title: "Your Wellbeing,\nOur Priority",
     subtitle:
-      "Our team of 50+ experienced specialists is dedicated to providing personalised care tailored to your unique needs.",
-    cta: "Meet Our Doctors",
+      "Our team of 50+ experienced wellness specialists is dedicated to providing personalised care tailored to your unique needs.",
+    cta: "Meet Our Specialists",
   },
   {
     image: "/home/banner3.png",
-    tag: "Technology-Driven",
-    title: "Healthcare Meets\nInnovation",
+    tag: "Technology-Driven Care",
+    title: "Wellness Meets\nInnovation",
     subtitle:
-      "Cutting-edge diagnostic tools, AI-powered insights, and digital health records — all integrated on one seamless platform.",
+      "Cutting-edge scheduling tools, AI-powered health insights, and digital wellness records — all integrated on one seamless platform.",
     cta: "Explore Services",
   },
 ];
@@ -38,9 +38,9 @@ const SERVICES = [
         <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
       </svg>
     ),
-    title: "General Medicine",
+    title: "Holistic General Care",
     description:
-      "Comprehensive primary care for all age groups — from routine check-ups to managing chronic conditions.",
+      "Comprehensive primary wellness support for all ages — from routine health check-ins to managing long-term vitality.",
   },
   {
     icon: (
@@ -48,9 +48,9 @@ const SERVICES = [
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
       </svg>
     ),
-    title: "Cardiology",
+    title: "Cardiovascular Wellness",
     description:
-      "Advanced cardiac diagnostics and treatment from India's leading cardiologists. ECG, echo, and interventional care.",
+      "Advanced heart-health monitoring and coordination from leading wellness specialists.",
   },
   {
     icon: (
@@ -60,9 +60,9 @@ const SERVICES = [
         <circle cx="12" cy="12" r="10" />
       </svg>
     ),
-    title: "Orthopedics",
+    title: "Mobility & Joint Health",
     description:
-      "Expert joint, spine, and sports injury care with minimally invasive surgical options and rapid rehabilitation.",
+      "Expert mobility support and joint wellness with rapid rehabilitation care plans.",
   },
   {
     icon: (
@@ -72,9 +72,9 @@ const SERVICES = [
         <line x1="12" y1="16" x2="12.01" y2="16" />
       </svg>
     ),
-    title: "Neurology",
+    title: "Neurological Wellness",
     description:
-      "Comprehensive brain and nervous system care — stroke, epilepsy, Parkinson's, and neurocritical services.",
+      "Comprehensive cognitive and nervous system support — stress management and neuro-wellness services.",
   },
   {
     icon: (
@@ -85,9 +85,9 @@ const SERVICES = [
         <path d="M16 3.13a4 4 0 0 1 0 7.75" />
       </svg>
     ),
-    title: "Pediatrics",
+    title: "Pediatric Care",
     description:
-      "Dedicated child healthcare with a warm, child-friendly environment. Vaccination, nutrition, and developmental care.",
+      "Dedicated child wellness with a warm, child-friendly environment. Nutrition and developmental support.",
   },
   {
     icon: (
@@ -95,44 +95,44 @@ const SERVICES = [
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
       </svg>
     ),
-    title: "Oncology",
+    title: "Specialized Recovery",
     description:
-      "Multidisciplinary cancer care with the latest chemotherapy, immunotherapy, and targeted therapy protocols.",
+      "Multidisciplinary recovery protocols with the latest wellness and targeted mitigation strategies.",
   },
 ];
 
 const STATS = [
-  { value: "50+", label: "Expert Doctors" },
-  { value: "200+", label: "Hospital Beds" },
-  { value: "24/7", label: "Emergency Care" },
-  { value: "10K+", label: "Patients Yearly" },
-  { value: "15+", label: "Specialties" },
-  { value: "98%", label: "Patient Satisfaction" },
+  { value: "50+", label: "Wellness Specialists" },
+  { value: "200+", label: "Care Centers" },
+  { value: "24/7", label: "Urgent Support" },
+  { value: "10K+", label: "Members Yearly" },
+  { value: "15+", label: "Care Disciplines" },
+  { value: "98%", label: "Member Satisfaction" },
 ];
 
 const TESTIMONIALS = [
   {
     name: "Priya Sharma",
-    role: "Cardiac Patient",
+    role: "Wellness Member",
     initials: "PS",
     color: "#14b8a6",
-    text: "The cardiology team at Health Connect gave me a second chance at life. The booking system was seamless and the doctors were incredibly thorough with their diagnosis.",
+    text: "The care team at Health Connect gave my routine a second chance. The booking system was seamless and the specialists were incredibly thorough with their health analysis.",
     rating: 5,
   },
   {
     name: "Rajesh Kumar",
-    role: "Orthopedic Patient",
+    role: "Mobility Support",
     initials: "RK",
     color: "#3b82f6",
-    text: "After my knee surgery, the online appointment tracking made follow-up visits so convenient. I could see my recovery notes and schedule in one place.",
+    text: "After my rehabilitation, the online appointment tracking made follow-up visits so convenient. I could see my recovery notes and schedule in one place.",
     rating: 5,
   },
   {
     name: "Anjali Mehta",
-    role: "Parent",
+    role: "Family Care Member",
     initials: "AM",
     color: "#a855f7",
-    text: "Taking my daughter for pediatric check-ups used to be stressful. Health Connect made the whole experience smooth — from booking to the warm, friendly doctors.",
+    text: "Organizing wellness check-ins used to be stressful. Health Connect made the whole experience smooth — from booking to the warm, friendly care experts.",
     rating: 5,
   },
 ];
@@ -193,7 +193,7 @@ export default function HomePage() {
             Admin Login
           </Link>
           <Link href="/login" className="home-nav-cta" onClick={() => setMenuOpen(false)}>
-            Patient Login
+            Member Login
           </Link>
         </div>
 
@@ -278,10 +278,10 @@ export default function HomePage() {
         <div className="home-section-inner">
           <div className="section-header">
             <span className="section-tag">What We Offer</span>
-            <h2 className="section-title">Our Medical Services</h2>
+            <h2 className="section-title">Our Wellness Services</h2>
             <p className="section-subtitle">
-              From preventive care to complex surgeries, our specialised departments deliver exceptional outcomes
-              backed by the latest medical technology.
+              From preventive wellness to complex health scheduling, our specialised care departments deliver exceptional outcomes
+              backed by the latest technology.
             </p>
           </div>
           <div className="services-grid">
@@ -309,16 +309,16 @@ export default function HomePage() {
             <div className="split-image">
               <Image
                 src="/home/specialists.png"
-                alt="Our medical specialists team"
+                alt="Our professional experts team"
                 fill
                 style={{ objectFit: "cover", borderRadius: "16px" }}
               />
             </div>
             <div className="split-content">
               <span className="section-tag">Expert Team</span>
-              <h2 className="section-title left">Meet Our Specialists</h2>
+              <h2 className="section-title left">Meet Our Care Specialists</h2>
               <p className="split-text">
-                Our 50+ board-certified specialists bring decades of combined experience across 15+ medical disciplines. Each doctor is selected for both clinical excellence and their compassionate approach to patient care.
+                Our 50+ certified wellness specialists bring decades of combined experience across 15+ health disciplines. Each specialist is selected for both operational excellence and their compassionate approach to member care.
               </p>
               <ul className="feature-list">
                 <li>
@@ -364,23 +364,23 @@ export default function HomePage() {
             <div className="split-image">
               <Image
                 src="/home/emergency.png"
-                alt="24/7 Emergency care department"
+                alt="24/7 Urgent coordination department"
                 fill
                 style={{ objectFit: "cover", borderRadius: "16px" }}
               />
             </div>
             <div className="split-content">
               <span className="section-tag emergency-tag">Always Ready</span>
-              <h2 className="section-title left">24/7 Emergency Care</h2>
+              <h2 className="section-title left">24/7 Urgent Support</h2>
               <p className="split-text">
-                Our emergency department is fully staffed around the clock with trauma specialists, critical care teams, and state-of-the-art resuscitation equipment — ready for any medical crisis.
+                Our urgent response department is fully staffed around the clock with priority care specialists, support teams, and state-of-the-art care equipment — ready for any health crisis.
               </p>
               <div className="emergency-contact">
                 <div className="emergency-number">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 5c-.11-1.09.63-2.17 1.81-2.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.09a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
-                  <span>Emergency Helpline: <strong>1800-HC-HELP</strong></span>
+                  <span>Priority Helpline: <strong>1800-CONNECT</strong></span>
                 </div>
                 <div className="emergency-number">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -395,19 +395,19 @@ export default function HomePage() {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Trauma & critical care units
+                  Priority & critical coordination units
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Advanced life support ambulance fleet
+                  Advanced support operation fleet
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  On-call specialist response in minutes
+                  On-call wellness specialist response in minutes
                 </li>
               </ul>
             </div>
@@ -419,10 +419,10 @@ export default function HomePage() {
         <div className="home-section-inner">
           <div className="split-section">
             <div className="split-content">
-              <span className="section-tag">Digital Health</span>
+              <span className="section-tag">Digital Platform</span>
               <h2 className="section-title left">Book Appointments Online</h2>
               <p className="split-text">
-                Skip the queues. Book appointments with your preferred doctor in seconds, receive real-time status updates, and manage your health records — all from your phone.
+                Skip the queues. Book appointments with your preferred specialist in seconds, receive real-time status updates, and manage your digital records — all from your phone.
               </p>
               <ul className="feature-list">
                 <li>
@@ -441,13 +441,13 @@ export default function HomePage() {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Choose preferred doctor & time slot
+                  Choose preferred specialist & time slot
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Digital health records & prescription history
+                  Digital records & coordination history
                 </li>
               </ul>
               <Link href="/login" className="btn-home-primary">
@@ -483,28 +483,28 @@ export default function HomePage() {
             </div>
             <div className="split-content">
               <span className="section-tag">In-House Services</span>
-              <h2 className="section-title left">Full-Service Pharmacy</h2>
+              <h2 className="section-title left">Full-Service Wellness Center</h2>
               <p className="split-text">
-                Our in-house pharmacy stocks a comprehensive range of medications, generic alternatives, and medical supplies — so you leave with everything you need after your consultation.
+                Our in-house wellness center stocks a comprehensive range of wellness supplements, generic alternatives, and health supplies — so you leave with everything you need after your consultation.
               </p>
               <ul className="feature-list">
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  10,000+ medicines in stock
+                  10,000+ health supplies in stock
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Licensed pharmacists on duty 24/7
+                  Licensed care specialists on duty 24/7
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Affordable generics & branded options
+                  Affordable generic & branded options
                 </li>
               </ul>
             </div>
@@ -515,10 +515,10 @@ export default function HomePage() {
       <section className="home-section alt-bg">
         <div className="home-section-inner">
           <div className="section-header">
-            <span className="section-tag">Patient Stories</span>
-            <h2 className="section-title">What Our Patients Say</h2>
+            <span className="section-tag">Member Stories</span>
+            <h2 className="section-title">What Our Members Say</h2>
             <p className="section-subtitle">
-              Real stories from real patients who trusted Health Connect for their medical journey.
+              Real stories from real members who trusted Health Connect for their wellness journey.
             </p>
           </div>
           <div className="testimonials-grid">
@@ -551,7 +551,7 @@ export default function HomePage() {
         <div className="home-section-inner" style={{ textAlign: "center" }}>
           <h2 className="cta-title">Ready to Take Control of Your Health?</h2>
           <p className="cta-subtitle">
-            Join thousands of patients who manage their healthcare digitally with Health Connect.
+            Join thousands of members who manage their wellness digitally with Health Connect.
           </p>
           <div className="cta-actions">
             <Link href="/login" className="btn-home-primary large">
@@ -565,7 +565,7 @@ export default function HomePage() {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 5c-.11-1.09.63-2.17 1.81-2.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.09a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
-              Call Emergency
+              Call Priority Line
             </a>
           </div>
         </div>
@@ -587,7 +587,7 @@ export default function HomePage() {
                 </span>
               </div>
               <p className="footer-brand-text">
-                Bridging patients and world-class healthcare through technology. Compassionate care, digitally delivered.
+                Bridging members and world-class care through technology. Compassionate wellness, digitally delivered.
               </p>
               <div className="footer-socials">
                 <a href="#" className="footer-social" aria-label="Facebook">
@@ -632,11 +632,11 @@ export default function HomePage() {
             <div className="footer-col">
               <div className="footer-col-title">Quick Links</div>
               <ul className="footer-links">
-                <li><Link href="/login">Patient Portal</Link></li>
+                <li><Link href="/login">Member Portal</Link></li>
                 <li><Link href="/admin">Admin Login</Link></li>
                 <li><a href="#appointment">Book Appointment</a></li>
-                <li><a href="#specialists">Our Doctors</a></li>
-                <li><a href="#emergency">Emergency</a></li>
+                <li><a href="#specialists">Our Specialists</a></li>
+                <li><a href="#emergency">Emergency Support</a></li>
               </ul>
             </div>
 
@@ -648,7 +648,7 @@ export default function HomePage() {
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                     <circle cx="12" cy="10" r="3" />
                   </svg>
-                  <span>123 Medical Avenue, Health City, HC 400001</span>
+                  <span>123 Professional Avenue, Connect City, HC 400001</span>
                 </li>
                 <li>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -3,14 +3,14 @@
 import Link from "next/link";
 
 interface HeaderProps {
-    role: "patient" | "admin";
+    role: "requester" | "admin";
     onLogout?: () => void;
 }
 
 export default function Header({ role, onLogout }: HeaderProps) {
     return (
         <header className="header">
-            <Link href={role === "patient" ? "/patient/dashboard" : "/admin/dashboard"} className="header-logo">
+            <Link href={role === "requester" ? "/requester/dashboard" : "/admin/dashboard"} className="header-logo">
                 <div className="header-logo-icon">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                         <rect x="7" y="1" width="4" height="16" rx="2" fill="white" />
@@ -23,7 +23,7 @@ export default function Header({ role, onLogout }: HeaderProps) {
             </Link>
             <div className="header-nav">
                 <div className={`header-badge ${role}`}>
-                    {role === "patient" ? "Patient" : "Admin"}
+                    {role === "requester" ? "Member" : "Admin"}
                 </div>
                 {onLogout && (
                     <button className="header-btn" onClick={onLogout}>

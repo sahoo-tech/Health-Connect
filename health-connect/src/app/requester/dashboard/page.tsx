@@ -62,7 +62,7 @@ export default function PatientDashboard() {
 
     return (
         <>
-            <Header role="patient" onLogout={handleLogout} />
+            <Header role="requester" onLogout={handleLogout} />
             <div className="page-container medium">
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "32px" }}>
                     <div>
@@ -71,7 +71,7 @@ export default function PatientDashboard() {
                             {user.phone_number}
                         </p>
                     </div>
-                    <Link href="/patient/book" className="btn btn-primary">
+                    <Link href="/requester/book" className="btn btn-primary">
                         Request slot
                     </Link>
                 </div>
@@ -94,7 +94,7 @@ export default function PatientDashboard() {
                         </div>
                         <div className="empty-state-title">Nothing booked yet</div>
                         <div className="empty-state-text">Pick a date and request a slot — it takes under a minute.</div>
-                        <Link href="/patient/book" className="btn btn-primary">
+                        <Link href="/requester/book" className="btn btn-primary">
                             Request a slot
                         </Link>
                     </div>
@@ -103,7 +103,7 @@ export default function PatientDashboard() {
                         {bookings.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).map((booking, i) => (
                             <Link
                                 key={booking.booking_id}
-                                href={`/patient/booking/${booking.booking_id}`}
+                                href={`/requester/booking/${booking.booking_id}`}
                                 className="booking-card"
                                 style={{ animationDelay: `${i * 0.05}s` }}
                             >

@@ -96,7 +96,7 @@ export default function BookPage() {
 
         if (data.success) {
             setToast({ message: "Booking submitted", type: "success" });
-            setTimeout(() => router.push("/patient/dashboard"), 800);
+            setTimeout(() => router.push("/requester/dashboard"), 800);
         } else {
             setToast({ message: data.error || "Could not create booking", type: "error" });
         }
@@ -106,9 +106,9 @@ export default function BookPage() {
 
     return (
         <>
-            <Header role="patient" />
+            <Header role="requester" />
             <div className="page-container medium">
-                <a href="/patient/dashboard" className="back-link">
+                <a href="/requester/dashboard" className="back-link">
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                         <path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>

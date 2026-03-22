@@ -18,7 +18,7 @@ export default function LoginPage() {
     useEffect(() => {
         const stored = sessionStorage.getItem("hc_user");
         if (stored) {
-            router.push("/patient/dashboard");
+            router.push("/requester/dashboard");
         }
     }, [router]);
 
@@ -84,7 +84,7 @@ export default function LoginPage() {
         if (data.success) {
             sessionStorage.setItem("hc_user", JSON.stringify(data.user));
             setToast({ message: "Logged in", type: "success" });
-            setTimeout(() => router.push("/patient/dashboard"), 500);
+            setTimeout(() => router.push("/requester/dashboard"), 500);
         } else {
             setToast({ message: data.error || "Incorrect code", type: "error" });
         }
@@ -173,7 +173,7 @@ export default function LoginPage() {
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                                     <circle cx="12" cy="7" r="4" />
                                 </svg>
-                                <span style={{ fontSize: "13px", color: "var(--accent-teal-light)", fontWeight: 500 }}>Patient Login</span>
+                                <span style={{ fontSize: "13px", color: "var(--accent-teal-light)", fontWeight: 500 }}>Member Login</span>
                             </div>
                             <a
                                 href="/admin"
