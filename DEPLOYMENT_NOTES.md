@@ -12,6 +12,31 @@ While Vercel provides a zero-config experience, you can reliably host the Next.j
 
 ---
 
+## Deploying to Vercel (Step-by-Step)
+
+Because this project is separated into a frontend and a backend, you will create two separate projects in Vercel.
+
+### 1. Deploy the Backend (`health-connect-api`)
+1. Push your code to GitHub, GitLab, or Bitbucket.
+2. Go to your [Vercel Dashboard](https://vercel.com/) and click **Add New... > Project**.
+3. Import your repository.
+4. **Important**: In the Root Directory section, click Edit and select `health-connect-api`.
+5. The deployment configuration will automatically read the `vercel.json` file.
+6. (Optional) In Environment Variables, add `ADMIN_PASSWORD` (e.g., `Value: my_secure_password`).
+7. Click **Deploy**. Once finished, copy the generated URL (e.g., `https://healthtech-api.vercel.app`).
+
+### 2. Deploy the Frontend (`health-connect`)
+1. Go back to your [Vercel Dashboard](https://vercel.com/) and click **Add New... > Project** to create a second project.
+2. Import the *same* repository again.
+3. In the Root Directory section, click Edit and select `health-connect` this time.
+4. The Framework Preset should automatically switch to **Next.js**.
+5. In Environment Variables, add:
+   - **Name**: `NEXT_PUBLIC_API_URL`
+   - **Value**: The URL you copied from Step 1 (e.g., `https://healthtech-api.vercel.app`). *Trailing slashes are preffered to be manually handled.*
+6. Click **Deploy**.
+
+---
+
 ## Database Configuration & Setup
 
 **No database setup is required.**
