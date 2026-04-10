@@ -8,23 +8,20 @@ import Toast from "@/components/Toast";
 import { API_BASE } from "@/lib/api";
 
 const SERVICE_TYPES = [
-    "General Consultation",
-    "Cardiology",
-    "Orthopedics",
-    "Neurology",
-    "Pediatrics",
-    "Oncology",
-    "Dermatology",
-    "Gynecology",
-    "Ophthalmology",
-    "ENT",
-    "Psychiatry",
-    "Urology",
-    "Endocrinology",
-    "Pulmonology",
-    "Nephrology",
-    "Gastroenterology",
-    "Rheumatology",
+    "Antenatal Check-up",
+    "First Trimester Consultation",
+    "Second Trimester Consultation",
+    "Third Trimester Consultation",
+    "High-Risk Pregnancy Monitoring",
+    "Midwife Consultation",
+    "Birth Planning Session",
+    "Postnatal Check-up",
+    "Lactation Consultation",
+    "Neonatal Assessment",
+    "Gestational Diabetes Management",
+    "Prenatal Ultrasound Review",
+    "Mental Health Support",
+    "Emergency Maternal Care",
     "Other",
 ];
 
@@ -63,9 +60,8 @@ export default function BookPage() {
         requesterAge &&
         requesterGender &&
         requesterCity.trim() &&
+        providerSpeciality &&
         selectedSlot;
-
-    const providerFilled = !!(providerName || providerSpeciality || providerRegNo || providerExperience || providerLocation);
 
     const handleSubmit = async () => {
         if (!isFormValid || !user) return;
@@ -112,13 +108,13 @@ export default function BookPage() {
                     </svg>
                     Dashboard
                 </a>
-                <h1 className="page-title">Request a slot</h1>
-                <p className="page-subtitle">Fill in your details and choose a convenient time</p>
+                <h1 className="page-title">Request a care slot</h1>
+                <p className="page-subtitle">Fill in your details and choose a convenient time for your maternal care appointment</p>
 
                 <div className="card" style={{ marginBottom: "24px" }}>
                     <div className="card-header">
-                        <div className="card-title">Your Details</div>
-                        <div className="card-description">Your information for the booking</div>
+                        <div className="card-title">Patient Details</div>
+                        <div className="card-description">Your information for the maternal care booking</div>
                     </div>
 
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
@@ -184,57 +180,65 @@ export default function BookPage() {
                 <div className="card" style={{ marginBottom: "24px" }}>
                     <div className="card-header">
                         <div className="card-title">
-                            Provider Preference <span style={{ fontSize: "10px", fontWeight: 600, background: "rgba(14,165,233,0.13)", color: "var(--accent-teal)", border: "1px solid rgba(14,165,233,0.25)", borderRadius: "4px", padding: "2px 6px", letterSpacing: "0.05em", textTransform: "uppercase", marginLeft: "12px", verticalAlign: "middle" }}>Optional</span>
+                            Service Type <span style={{ color: "var(--accent-red)" }}>*</span>
                         </div>
-                        <div className="card-description">If left blank, default system info will be populated for the session</div>
+                        <div className="card-description">Select the type of maternal care service you need</div>
+                    </div>
+                    <div className="form-group" style={{ marginBottom: 0 }}>
+                        <select
+                            className="form-input"
+                            value={providerSpeciality}
+                            onChange={(e) => setProviderSpeciality(e.target.value)}
+                        >
+                            <option value="">Select service type</option>
+                            {SERVICE_TYPES.map((s) => (
+                                <option key={s} value={s}>{s}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+
+                <div className="card" style={{ marginBottom: "24px" }}>
+                    <div className="card-header">
+                        <div className="card-title">
+                            Doctor Preference <span style={{ fontSize: "10px", fontWeight: 600, background: "rgba(14,165,233,0.13)", color: "var(--accent-teal)", border: "1px solid rgba(14,165,233,0.25)", borderRadius: "4px", padding: "2px 6px", letterSpacing: "0.05em", textTransform: "uppercase", marginLeft: "12px", verticalAlign: "middle" }}>Optional</span>
+                        </div>
+                        <div className="card-description">Leave blank and the best available doctor will be assigned to you</div>
                     </div>
 
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
                         <div className="form-group">
-                            <label className="form-label">Service Type</label>
-                            <select
-                                className="form-input"
-                                value={providerSpeciality}
-                                onChange={(e) => setProviderSpeciality(e.target.value)}
-                            >
-                                <option value="">Select service type</option>
-                                {SERVICE_TYPES.map((s) => (
-                                    <option key={s} value={s}>{s}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label className="form-label">Preferred Name</label>
+                            <label className="form-label">Preferred Doctor Name</label>
                             <input
                                 type="text"
                                 className="form-input"
-                                placeholder="e.g. Any available"
+                                placeholder="e.g. Dr. Priya Sharma"
                                 value={providerName}
                                 onChange={(e) => setProviderName(e.target.value)}
                             />
                         </div>
                         <div className="form-group">
-                            <label className="form-label">ID / Ref. No.</label>
+                            <label className="form-label">Doctor ID / Ref. No.</label>
                             <input
                                 type="text"
                                 className="form-input"
-                                placeholder="e.g. PRV-12345"
+                                placeholder="e.g. DOC-12345"
                                 value={providerRegNo}
                                 onChange={(e) => setProviderRegNo(e.target.value)}
                             />
                         </div>
                         <div className="form-group">
-                            <label className="form-label">Location / Centre</label>
+                            <label className="form-label">Preferred Location / Centre</label>
                             <input
                                 type="text"
                                 className="form-input"
-                                placeholder="e.g. Wellness Centre"
+                                placeholder="e.g. Wellness Centre, Mumbai"
                                 value={providerLocation}
                                 onChange={(e) => setProviderLocation(e.target.value)}
                             />
                         </div>
-                        <div className="form-group" style={{ gridColumn: "1 / -1" }}>
-                            <label className="form-label">Years of Experience</label>
+                        <div className="form-group">
+                            <label className="form-label">Min. Experience Required</label>
                             <input
                                 type="text"
                                 className="form-input"
@@ -280,7 +284,7 @@ export default function BookPage() {
 
                     {!isFormValid && (
                         <p style={{ fontSize: "13px", color: "var(--text-muted)", marginBottom: "12px", textAlign: "center" }}>
-                            Fill all required fields and select a slot to continue
+                            Fill all required fields (including service type) and select a slot to continue
                         </p>
                     )}
 
@@ -289,7 +293,7 @@ export default function BookPage() {
                         onClick={handleSubmit}
                         disabled={!isFormValid || loading}
                     >
-                        {loading ? <span className="spinner"></span> : "Confirm booking"}
+                    {loading ? <span className="spinner"></span> : "Submit Booking Request"}
                     </button>
                 </div>
             </div>

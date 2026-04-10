@@ -8,14 +8,6 @@ import Toast from "@/components/Toast";
 import { Booking, BookingStatus, PresetReason } from "@/lib/types";
 import { API_BASE } from "@/lib/api";
 
-const DEMO_PROVIDER = {
-    name: "Any available provider",
-    reg_no: "PRV-00001",
-    experience: "10+ years",
-    location: "Central Coordination Centre",
-    speciality: "General Consultation",
-};
-
 export default function PatientBookingDetail() {
     const router = useRouter();
     const params = useParams();
@@ -25,6 +17,7 @@ export default function PatientBookingDetail() {
     const [loading, setLoading] = useState(true);
     const [actionLoading, setActionLoading] = useState(false);
     const [showCancelModal, setShowCancelModal] = useState(false);
+    const [showRescheduleAcceptModal, setShowRescheduleAcceptModal] = useState(false);
     const [cancelReason, setCancelReason] = useState(PresetReason.ScheduleConflict);
     const [toast, setToast] = useState<{ message: string; type: "success" | "error" | "info" } | null>(null);
 
@@ -70,6 +63,28 @@ export default function PatientBookingDetail() {
             setToast({ message: "Booking cancelled", type: "success" });
         } else {
             setToast({ message: data.error || "Could not cancel", type: "error" });
+        }
+    };
+
+    const handleAcceptReschedule = async () => {
+        setActionLoading(true);
+        const res = await fetch(`${API_BASE}/api/bookings/${bookingId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                status: BookingStatus.Confirmed,
+                reason: "Patient accepted rescheduled slot",
+            }),
+        });
+        const data = await res.json();
+        setActionLoading(false);
+
+        if (data.success) {
+            setBooking(data.booking);
+            setShowRescheduleAcceptModal(false);
+            setToast({ message: "Rescheduled slot accepted", type: "success" });
+        } else {
+            setToast({ message: data.error || "Could not accept", type: "error" });
         }
     };
 
@@ -132,6 +147,7 @@ export default function PatientBookingDetail() {
     }
 
     const canCancel = booking.status === BookingStatus.Pending || booking.status === BookingStatus.Confirmed || booking.status === BookingStatus.Rescheduled;
+    const canAcceptReschedule = booking.status === BookingStatus.Rescheduled;
 
     return (
         <>
@@ -198,56 +214,54 @@ export default function PatientBookingDetail() {
                             </div>
                         </div>
                         <div>
-                            {(() => {
-                                const hasRealProviderData = !!(booking.provider_name || booking.provider_reg_no || booking.provider_location || booking.provider_experience);
-                                const provider = hasRealProviderData
-                                    ? {
-                                        name: booking.provider_name || "Any available",
-                                        reg_no: booking.provider_reg_no || "—",
-                                        experience: booking.provider_experience || "—",
-                                        location: booking.provider_location || "—",
-                                        speciality: booking.provider_speciality || "—",
-                                    }
-                                    : DEMO_PROVIDER;
-                                return (
-                                    <>
-                                        <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
-                                            Provider Preference
-                                            {!hasRealProviderData && (
-                                                <span style={{ fontSize: "10px", fontWeight: 600, letterSpacing: "0.05em", background: "rgba(14,165,233,0.13)", color: "var(--accent-teal)", border: "1px solid rgba(14,165,233,0.25)", borderRadius: "4px", padding: "1px 6px", textTransform: "uppercase" }}>Demo</span>
-                                            )}
-                                        </div>
-                                        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                                            {[
-                                                { label: "Service Type", value: provider.speciality },
-                                                { label: "Name", value: provider.name },
-                                                { label: "Ref. No.", value: provider.reg_no },
-                                                { label: "Experience", value: provider.experience },
-                                                { label: "Location", value: provider.location },
-                                            ].map((row) => (
-                                                <div key={row.label} style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", borderBottom: "1px solid var(--border-subtle)", paddingBottom: "6px" }}>
-                                                    <span style={{ color: "var(--text-muted)" }}>{row.label}</span>
-                                                    <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>{row.value}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </>
-                                );
-                            })()}
+                            <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px" }}>Care Type & Provider</div>
+                            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                                {[
+                                    { label: "Service Type", value: booking.provider_speciality },
+                                    { label: "Preferred Doctor", value: booking.provider_name },
+                                    { label: "Ref. No.", value: booking.provider_reg_no },
+                                    { label: "Experience", value: booking.provider_experience },
+                                    { label: "Location", value: booking.provider_location },
+                                ].map((row) => (
+                                    <div key={row.label} style={{ display: "flex", justifyContent: "space-between", fontSize: "13px", borderBottom: "1px solid var(--border-subtle)", paddingBottom: "6px" }}>
+                                        <span style={{ color: "var(--text-muted)" }}>{row.label}</span>
+                                        <span style={{ color: row.value ? "var(--text-primary)" : "var(--text-muted)", fontWeight: row.value ? 500 : 400 }}>{row.value || "—"}</span>
+                                    </div>
+                                ))}
+                                {!booking.provider_name && !booking.provider_reg_no && !booking.provider_location && !booking.provider_experience && (
+                                    <div style={{ marginTop: "6px", padding: "10px 12px", borderRadius: "var(--radius-sm)", background: "rgba(14,165,233,0.08)", border: "1px solid rgba(14,165,233,0.2)", fontSize: "12px", color: "var(--accent-teal)", display: "flex", alignItems: "center", gap: "8px" }}>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>
+                                        The best available doctor will be assigned to you
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                     </div>
 
-                    {canCancel && (
+                    {(canAcceptReschedule || canCancel) && (
                         <>
                             <hr className="divider" />
                             <div className="action-group">
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={() => setShowCancelModal(true)}
-                                >
-                                    Cancel booking
-                                </button>
+                                {canAcceptReschedule && (
+                                    <button
+                                        className="btn btn-success"
+                                        onClick={() => setShowRescheduleAcceptModal(true)}
+                                    >
+                                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                            <path d="M2 8l5 5 7-8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                        Accept New Slot
+                                    </button>
+                                )}
+                                {canCancel && (
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() => setShowCancelModal(true)}
+                                    >
+                                        Cancel booking
+                                    </button>
+                                )}
                             </div>
                         </>
                     )}
@@ -315,6 +329,32 @@ export default function PatientBookingDetail() {
                             </button>
                             <button className="btn btn-danger" onClick={handleCancel} disabled={actionLoading}>
                                 {actionLoading ? <span className="spinner"></span> : "Yes, cancel"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showRescheduleAcceptModal && (
+                <div className="modal-overlay" onClick={() => setShowRescheduleAcceptModal(false)}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+                            <div style={{ width: "32px", height: "32px", borderRadius: "var(--radius-sm)", background: "rgba(34,197,94,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                            </div>
+                            <div className="modal-title" style={{ marginBottom: 0 }}>Accept the new slot?</div>
+                        </div>
+                        <p style={{ color: "var(--text-secondary)", marginBottom: "20px", fontSize: "14px" }}>
+                            The admin has suggested a new appointment time. Accepting will confirm your booking with the new slot.
+                        </p>
+                        <div className="modal-actions">
+                            <button className="btn btn-secondary" onClick={() => setShowRescheduleAcceptModal(false)}>
+                                Not now
+                            </button>
+                            <button className="btn btn-success" onClick={handleAcceptReschedule} disabled={actionLoading}>
+                                {actionLoading ? <span className="spinner"></span> : "Accept & Confirm"}
                             </button>
                         </div>
                     </div>

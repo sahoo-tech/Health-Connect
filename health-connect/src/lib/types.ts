@@ -16,6 +16,17 @@ export enum PresetReason {
     Other = "Other",
 }
 
+export enum AdminRejectReason {
+    NoSlotsAvailable = "No slots available for requested date",
+    IneligibleRequest = "Request does not meet eligibility criteria",
+    IncompleteInformation = "Incomplete or invalid patient information",
+    OutOfServiceArea = "Patient location outside service area",
+    ResourceUnavailable = "Required care resource not available",
+    DuplicateRequest = "Duplicate booking detected",
+    PolicyViolation = "Request violates programme policy",
+    Other = "Other",
+}
+
 export interface User {
     id: string;
     phone_number: string;

@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import StatusBadge from "@/components/StatusBadge";
 import SlotPicker from "@/components/SlotPicker";
 import Toast from "@/components/Toast";
-import { Booking, BookingStatus, PresetReason } from "@/lib/types";
+import { Booking, BookingStatus, AdminRejectReason } from "@/lib/types";
 import { API_BASE } from "@/lib/api";
 
 export default function AdminBookingDetail() {
@@ -19,8 +19,10 @@ export default function AdminBookingDetail() {
     const [actionLoading, setActionLoading] = useState(false);
     const [showRescheduleModal, setShowRescheduleModal] = useState(false);
     const [showRejectModal, setShowRejectModal] = useState(false);
+    const [showAssignModal, setShowAssignModal] = useState(false);
     const [newSlot, setNewSlot] = useState("");
-    const [rejectReason, setRejectReason] = useState(PresetReason.AdminDecision);
+    const [assignSlot, setAssignSlot] = useState("");
+    const [rejectReason, setRejectReason] = useState(AdminRejectReason.NoSlotsAvailable);
     const [toast, setToast] = useState<{ message: string; type: "success" | "error" | "info" } | null>(null);
 
     const loadBooking = useCallback(async () => {
@@ -63,11 +65,12 @@ export default function AdminBookingDetail() {
             setBooking(data.booking);
             setShowRescheduleModal(false);
             setShowRejectModal(false);
+            setShowAssignModal(false);
 
             const messages: Record<string, string> = {
-                [BookingStatus.Confirmed]: "Request confirmed",
+                [BookingStatus.Confirmed]: "Slot assigned & booking confirmed",
                 [BookingStatus.Rejected]: "Request rejected",
-                [BookingStatus.Rescheduled]: "New slot suggested",
+                [BookingStatus.Rescheduled]: "New slot suggested to patient",
             };
 
             setToast({ message: messages[status] || "Updated", type: "success" });
@@ -151,7 +154,7 @@ export default function AdminBookingDetail() {
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "32px" }}>
                     <div>
                         <h1 className="page-title">{booking.booking_id}</h1>
-                        <p className="page-subtitle" style={{ marginBottom: 0 }}>Request management</p>
+                        <p className="page-subtitle" style={{ marginBottom: 0 }}>Maternal care request management</p>
                     </div>
                     <StatusBadge status={booking.status} />
                 </div>
@@ -187,7 +190,7 @@ export default function AdminBookingDetail() {
                     <hr className="divider" />
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "8px" }}>
                         <div>
-                            <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px" }}>Requester Info</div>
+                            <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px" }}>Patient Info</div>
                             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                                 {[
                                     { label: "Name", value: booking.requester_name },
@@ -203,11 +206,11 @@ export default function AdminBookingDetail() {
                             </div>
                         </div>
                         <div>
-                            <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px" }}>Provider Preference</div>
+                            <div style={{ fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-muted)", marginBottom: "12px" }}>Care Type & Provider</div>
                             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                                 {[
                                     { label: "Service Type", value: booking.provider_speciality },
-                                    { label: "Preferred Provider", value: booking.provider_name },
+                                    { label: "Preferred Doctor", value: booking.provider_name },
                                     { label: "Ref. No.", value: booking.provider_reg_no },
                                     { label: "Experience", value: booking.provider_experience },
                                     { label: "Location", value: booking.provider_location },
@@ -217,6 +220,7 @@ export default function AdminBookingDetail() {
                                         <span style={{ color: row.value ? "var(--text-primary)" : "var(--text-muted)", fontWeight: row.value ? 500 : 400 }}>{row.value || "—"}</span>
                                     </div>
                                 ))}
+
                             </div>
                         </div>
                     </div>
@@ -230,17 +234,13 @@ export default function AdminBookingDetail() {
                             {isPending && (
                                 <button
                                     className="btn btn-success"
-                                    onClick={() => handleAction(BookingStatus.Confirmed, "Approved")}
+                                    onClick={() => setShowAssignModal(true)}
                                     disabled={actionLoading}
                                 >
-                                    {actionLoading ? <span className="spinner"></span> : (
-                                        <>
-                                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                                                <path d="M2 8l5 5 7-8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                            </svg>
-                                            Approve
-                                        </>
-                                    )}
+                                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                                        <path d="M2 8l5 5 7-8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                    Approve & Assign Slot
                                 </button>
                             )}
                             <button
@@ -252,7 +252,7 @@ export default function AdminBookingDetail() {
                                     <path d="M13.5 2.5A6.5 6.5 0 1 0 14 9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                                     <path d="M14 2.5V6h-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                Suggest new slot
+                                Suggest Another Slot
                             </button>
                             <button
                                 className="btn btn-danger"
@@ -269,12 +269,43 @@ export default function AdminBookingDetail() {
                 )}
             </div>
 
+            {showAssignModal && (
+                <div className="modal-overlay" onClick={() => setShowAssignModal(false)}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: "600px" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+                            <div style={{ width: "32px", height: "32px", borderRadius: "var(--radius-sm)", background: "rgba(34,197,94,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                            </div>
+                            <div className="modal-title" style={{ marginBottom: 0 }}>Assign Final Slot & Approve</div>
+                        </div>
+                        <p style={{ color: "var(--text-secondary)", marginBottom: "20px", fontSize: "14px" }}>
+                            Select the confirmed slot to assign to this patient. This will mark the booking as Approved.
+                        </p>
+                        <SlotPicker onSelect={setAssignSlot} selectedSlot={assignSlot} />
+                        <div className="modal-actions">
+                            <button className="btn btn-secondary" onClick={() => setShowAssignModal(false)}>
+                                Cancel
+                            </button>
+                            <button
+                                className="btn btn-success"
+                                onClick={() => handleAction(BookingStatus.Confirmed, "Approved — slot assigned by admin", assignSlot)}
+                                disabled={!assignSlot || actionLoading}
+                            >
+                                {actionLoading ? <span className="spinner"></span> : "Confirm & Assign Slot"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {showRescheduleModal && (
                 <div className="modal-overlay" onClick={() => setShowRescheduleModal(false)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: "600px" }}>
-                        <div className="modal-title">Suggest a new slot</div>
+                        <div className="modal-title">Suggest another slot</div>
                         <p style={{ color: "var(--text-secondary)", marginBottom: "20px" }}>
-                            Pick an available time to offer the requester.
+                            Pick an available time to offer the patient as an alternative.
                         </p>
                         <SlotPicker onSelect={setNewSlot} selectedSlot={newSlot} />
                         <div className="modal-actions">
@@ -283,7 +314,7 @@ export default function AdminBookingDetail() {
                             </button>
                             <button
                                 className="btn btn-warning"
-                                onClick={() => handleAction(BookingStatus.Rescheduled, "New slot suggested", newSlot)}
+                                onClick={() => handleAction(BookingStatus.Rescheduled, "Admin suggested a new slot", newSlot)}
                                 disabled={!newSlot || actionLoading}
                             >
                                 {actionLoading ? <span className="spinner"></span> : "Send suggestion"}
@@ -312,7 +343,7 @@ export default function AdminBookingDetail() {
                         <div className="form-group">
                             <label className="form-label">Reason for rejection</label>
                             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                                {Object.values(PresetReason).map((reason) => (
+                                {Object.values(AdminRejectReason).map((reason) => (
                                     <label
                                         key={reason}
                                         style={{
@@ -340,7 +371,7 @@ export default function AdminBookingDetail() {
                                             name="rejectReason"
                                             value={reason}
                                             checked={rejectReason === reason}
-                                            onChange={() => setRejectReason(reason as PresetReason)}
+                                            onChange={() => setRejectReason(reason as AdminRejectReason)}
                                             style={{ display: "none" }}
                                         />
                                         <span style={{ fontSize: "14px", color: rejectReason === reason ? "var(--text-primary)" : "var(--text-secondary)", fontWeight: rejectReason === reason ? 500 : 400 }}>{reason}</span>

@@ -7,27 +7,27 @@ import Image from "next/image";
 const SLIDES = [
   {
     image: "/home/banner1.png",
-    tag: "Holistic Care Network",
-    title: "Advanced Care,\nClose to Home",
+    tag: "Maternal Care Network",
+    title: "Expert Care for\nEvery Mother",
     subtitle:
-      "Health Connect brings premium wellness support to your fingertips — book, track, and manage your health journey with ease.",
+      "Health Connect brings certified maternal care specialists to your fingertips — book, track, and manage your pregnancy journey with confidence.",
     cta: "Book a Consultation",
   },
   {
     image: "/home/banner2.png",
     tag: "Compassionate Specialists",
-    title: "Your Wellbeing,\nOur Priority",
+    title: "Safe Deliveries,\nHealthier Futures",
     subtitle:
-      "Our team of 50+ experienced wellness specialists is dedicated to providing personalised care tailored to your unique needs.",
+      "Our team of 50+ certified midwives, OB-GYNs, and maternal health specialists are dedicated to providing personalised care at every stage.",
     cta: "Meet Our Specialists",
   },
   {
     image: "/home/banner3.png",
     tag: "Technology-Driven Care",
-    title: "Wellness Meets\nInnovation",
+    title: "Scheduling Made\nSimple",
     subtitle:
-      "Cutting-edge scheduling tools, AI-powered health insights, and digital wellness records — all integrated on one seamless platform.",
-    cta: "Explore Services",
+      "OTP-based secure login, real-time booking status, and admin-coordinated slot management — all on one seamless platform built for mothers.",
+    cta: "Get Started",
   },
 ];
 
@@ -35,46 +35,12 @@ const SERVICES = [
   {
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-      </svg>
-    ),
-    title: "Holistic General Care",
-    description:
-      "Comprehensive primary wellness support for all ages — from routine health check-ins to managing long-term vitality.",
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
       </svg>
     ),
-    title: "Cardiovascular Wellness",
+    title: "Antenatal Care",
     description:
-      "Advanced heart-health monitoring and coordination from leading wellness specialists.",
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="12" y1="5" x2="12" y2="19" />
-        <line x1="5" y1="12" x2="19" y2="12" />
-        <circle cx="12" cy="12" r="10" />
-      </svg>
-    ),
-    title: "Mobility & Joint Health",
-    description:
-      "Expert mobility support and joint wellness with rapid rehabilitation care plans.",
-  },
-  {
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <line x1="12" y1="8" x2="12" y2="12" />
-        <line x1="12" y1="16" x2="12.01" y2="16" />
-      </svg>
-    ),
-    title: "Neurological Wellness",
-    description:
-      "Comprehensive cognitive and nervous system support — stress management and neuro-wellness services.",
+      "Comprehensive prenatal check-ups, screenings, and health monitoring throughout all three trimesters.",
   },
   {
     icon: (
@@ -85,9 +51,43 @@ const SERVICES = [
         <path d="M16 3.13a4 4 0 0 1 0 7.75" />
       </svg>
     ),
-    title: "Pediatric Care",
+    title: "Midwife Consultations",
     description:
-      "Dedicated child wellness with a warm, child-friendly environment. Nutrition and developmental support.",
+      "One-on-one sessions with registered midwives for birth planning, breastfeeding, and postnatal support.",
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+      </svg>
+    ),
+    title: "High-Risk Pregnancy",
+    description:
+      "Specialised monitoring and care coordination for mothers with gestational diabetes, hypertension, or complicated pregnancies.",
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="8" x2="12" y2="12" />
+        <line x1="12" y1="16" x2="12.01" y2="16" />
+      </svg>
+    ),
+    title: "Postnatal Recovery",
+    description:
+      "Post-delivery care including wound care, mental health support, and physical recovery programmes for new mothers.",
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19" />
+        <line x1="5" y1="12" x2="19" y2="12" />
+        <circle cx="12" cy="12" r="10" />
+      </svg>
+    ),
+    title: "Lactation Support",
+    description:
+      "Expert guidance from certified lactation consultants to ensure healthy breastfeeding for mother and baby.",
   },
   {
     icon: (
@@ -95,45 +95,49 @@ const SERVICES = [
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
       </svg>
     ),
-    title: "Specialized Recovery",
+    title: "Neonatal Care",
     description:
-      "Multidisciplinary recovery protocols with the latest wellness and targeted mitigation strategies.",
+      "Dedicated care for newborns including routine check-ups, vaccinations, and early developmental assessments.",
   },
 ];
 
 const STATS = [
-  { value: "50+", label: "Wellness Specialists" },
-  { value: "200+", label: "Care Centers" },
-  { value: "24/7", label: "Urgent Support" },
-  { value: "10K+", label: "Members Yearly" },
-  { value: "15+", label: "Care Disciplines" },
-  { value: "98%", label: "Member Satisfaction" },
+  { value: "50+", label: "Maternal Specialists" },
+  { value: "200+", label: "Care Centres" },
+  { value: "24/7", label: "Emergency Support" },
+  { value: "10K+", label: "Mothers Served" },
+  { value: "98%", label: "Safe Delivery Rate" },
+  { value: "15 min", label: "Avg. Response Time" },
 ];
 
-const TESTIMONIALS = [
+const HOW_IT_WORKS = [
   {
-    name: "Priya Sharma",
-    role: "Wellness Member",
-    initials: "PS",
+    step: "01",
+    title: "Login with OTP",
+    description:
+      "Enter your mobile number and verify your identity with a secure one-time passcode. No passwords to remember.",
     color: "#14b8a6",
-    text: "The care team at Health Connect gave my routine a second chance. The booking system was seamless and the specialists were incredibly thorough with their health analysis.",
-    rating: 5,
   },
   {
-    name: "Rajesh Kumar",
-    role: "Mobility Support",
-    initials: "RK",
-    color: "#3b82f6",
-    text: "After my rehabilitation, the online appointment tracking made follow-up visits so convenient. I could see my recovery notes and schedule in one place.",
-    rating: 5,
+    step: "02",
+    title: "Submit Booking Request",
+    description:
+      "Fill in your details, choose your preferred care type, and select an available time slot from the next 7 days.",
+    color: "#0ea5e9",
   },
   {
-    name: "Anjali Mehta",
-    role: "Family Care Member",
-    initials: "AM",
+    step: "03",
+    title: "Admin Reviews & Acts",
+    description:
+      "Our coordination team reviews your request, then approves, rejects, or suggests an alternative slot based on availability.",
     color: "#a855f7",
-    text: "Organizing wellness check-ins used to be stressful. Health Connect made the whole experience smooth — from booking to the warm, friendly care experts.",
-    rating: 5,
+  },
+  {
+    step: "04",
+    title: "Track Your Status",
+    description:
+      "Monitor your booking status in real time — Pending, Approved, Rescheduled, or Cancelled. Cancel or reschedule if needed.",
+    color: "#f59e0b",
   },
 ];
 
@@ -141,7 +145,6 @@ export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showComingSoon, setShowComingSoon] = useState(false);
 
   const goToSlide = useCallback(
     (index: number) => {
@@ -187,17 +190,15 @@ export default function HomePage() {
 
         <div className={`home-nav-links ${menuOpen ? "open" : ""}`}>
           <a href="#services" className="home-nav-link" onClick={() => setMenuOpen(false)}>Services</a>
-          <a href="#specialists" className="home-nav-link" onClick={() => setMenuOpen(false)}>Specialists</a>
-          <a href="#emergency" className="home-nav-link" onClick={() => setMenuOpen(false)}>Emergency</a>
+          <a href="#how-it-works" className="home-nav-link" onClick={() => setMenuOpen(false)}>How It Works</a>
           <a href="#appointment" className="home-nav-link" onClick={() => setMenuOpen(false)}>Appointment</a>
           <Link href="/admin" className="home-nav-cta home-nav-cta-admin" onClick={() => setMenuOpen(false)}>
             Admin Login
           </Link>
           <Link href="/login" className="home-nav-cta" onClick={() => setMenuOpen(false)}>
-            Member Login
+            Patient Login
           </Link>
         </div>
-
 
         <button className="home-nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -231,13 +232,13 @@ export default function HomePage() {
             <span className="hero-tag">{slide.tag}</span>
             <h1 className="hero-title">{slide.title}</h1>
             <p className="hero-subtitle">{slide.subtitle}</p>
-            <a href="#" onClick={(e) => { e.preventDefault(); setShowComingSoon(true); }} className="hero-cta">
+            <Link href="/login" className="hero-cta">
               {slide.cta}
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -278,11 +279,10 @@ export default function HomePage() {
       <section id="services" className="home-section">
         <div className="home-section-inner">
           <div className="section-header">
-            <span className="section-tag">What We Offer</span>
-            <h2 className="section-title">Our Wellness Services</h2>
+            <span className="section-tag">Specialised Services</span>
+            <h2 className="section-title">Maternal Care Services</h2>
             <p className="section-subtitle">
-              From preventive wellness to complex health scheduling, our specialised care departments deliver exceptional outcomes
-              backed by the latest technology.
+              From prenatal check-ups to postnatal recovery, our certified maternal care specialists deliver compassionate, evidence-based care at every stage of your journey.
             </p>
           </div>
           <div className="services-grid">
@@ -291,139 +291,53 @@ export default function HomePage() {
                 <div className="service-icon">{svc.icon}</div>
                 <h3 className="service-title">{svc.title}</h3>
                 <p className="service-desc">{svc.description}</p>
-                <a href="#" onClick={(e) => { e.preventDefault(); setShowComingSoon(true); }} className="service-link">
+                <Link href="/login" className="service-link">
                   Book Now
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </a>
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="specialists" className="home-section alt-bg">
+      <section id="how-it-works" className="home-section alt-bg">
         <div className="home-section-inner">
-          <div className="split-section">
-            <div className="split-image">
-              <Image
-                src="/home/specialists.png"
-                alt="Our professional experts team"
-                fill
-                style={{ objectFit: "cover", borderRadius: "16px" }}
-              />
-            </div>
-            <div className="split-content">
-              <span className="section-tag">Expert Team</span>
-              <h2 className="section-title left">Meet Our Care Specialists</h2>
-              <p className="split-text">
-                Our 50+ certified wellness specialists bring decades of combined experience across 15+ health disciplines. Each specialist is selected for both operational excellence and their compassionate approach to member care.
-              </p>
-              <ul className="feature-list">
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Board-certified in their respective specialties
-                </li>
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Average 15+ years of clinical experience
-                </li>
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Trained at leading national & international institutions
-                </li>
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Ongoing research and academic contributions
-                </li>
-              </ul>
-              <a href="#" onClick={(e) => { e.preventDefault(); setShowComingSoon(true); }} className="btn-home-primary">
-                Book a Specialist
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </a>
-            </div>
+          <div className="section-header">
+            <span className="section-tag">Simple Process</span>
+            <h2 className="section-title">How It Works</h2>
+            <p className="section-subtitle">
+              From sign-up to confirmed appointment — our streamlined booking flow gets you care in four easy steps.
+            </p>
           </div>
-        </div>
-      </section>
-
-      <section id="emergency" className="home-section">
-        <div className="home-section-inner">
-          <div className="split-section reverse">
-            <div className="split-image">
-              <Image
-                src="/home/emergency.png"
-                alt="24/7 Urgent coordination department"
-                fill
-                style={{ objectFit: "cover", borderRadius: "16px" }}
-              />
-            </div>
-            <div className="split-content">
-              <span className="section-tag emergency-tag">Always Ready</span>
-              <h2 className="section-title left">24/7 Urgent Support</h2>
-              <p className="split-text">
-                Our urgent response department is fully staffed around the clock with priority care specialists, support teams, and state-of-the-art care equipment — ready for any health crisis.
-              </p>
-              <div className="emergency-contact">
-                <div className="emergency-number">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 5c-.11-1.09.63-2.17 1.81-2.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.09a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-                  </svg>
-                  <span>Priority Helpline: <strong>1800-CONNECT</strong></span>
+          <div className="how-it-works-grid">
+            {HOW_IT_WORKS.map((step, i) => (
+              <div key={step.step} className="hiw-card">
+                <div className="hiw-step-num" style={{ color: step.color, borderColor: step.color, background: `${step.color}14` }}>
+                  {step.step}
                 </div>
-                <div className="emergency-number">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
-                  </svg>
-                  <span>Response time: <strong>Under 5 minutes</strong></span>
-                </div>
+                {i < HOW_IT_WORKS.length - 1 && (
+                  <div className="hiw-connector" />
+                )}
+                <h3 className="hiw-title">{step.title}</h3>
+                <p className="hiw-desc">{step.description}</p>
               </div>
-              <ul className="feature-list">
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Priority & critical coordination units
-                </li>
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Advanced support operation fleet
-                </li>
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  On-call wellness specialist response in minutes
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="appointment" className="home-section alt-bg">
+      <section id="appointment" className="home-section">
         <div className="home-section-inner">
           <div className="split-section">
             <div className="split-content">
-              <span className="section-tag">Digital Platform</span>
-              <h2 className="section-title left">Book Appointments Online</h2>
+              <span className="section-tag">Digital Booking</span>
+              <h2 className="section-title left">Book Your Maternal Care Appointment</h2>
               <p className="split-text">
-                Skip the queues. Book appointments with your preferred specialist in seconds, receive real-time status updates, and manage your digital records — all from your phone.
+                Skip the queues. Request a maternal care appointment in minutes — choose your service type, preferred slot, and let our coordination team handle the rest.
               </p>
               <ul className="feature-list">
                 <li>
@@ -436,78 +350,36 @@ export default function HomePage() {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Real-time appointment status tracking
+                  Real-time status: Pending / Approved / Rejected
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Choose preferred specialist & time slot
+                  Reschedule or cancel anytime
                 </li>
                 <li>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
-                  Digital records & coordination history
+                  Admin assigns final confirmed slot
                 </li>
               </ul>
-              <a href="#" onClick={(e) => { e.preventDefault(); setShowComingSoon(true); }} className="btn-home-primary">
-                Get Started — It's Free
+              <Link href="/login" className="btn-home-primary">
+                Book Your Appointment
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />
                 </svg>
-              </a>
+              </Link>
             </div>
             <div className="split-image">
               <Image
                 src="/home/appointment.png"
-                alt="Book appointments online with Health Connect"
+                alt="Book maternal care appointments online with Health Connect"
                 fill
                 style={{ objectFit: "cover", borderRadius: "16px" }}
               />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="home-section pharmacy-section">
-        <div className="home-section-inner">
-          <div className="split-section reverse">
-            <div className="split-image">
-              <Image
-                src="/home/pharmacy.png"
-                alt="In-house pharmacy services"
-                fill
-                style={{ objectFit: "cover", borderRadius: "16px" }}
-              />
-            </div>
-            <div className="split-content">
-              <span className="section-tag">In-House Services</span>
-              <h2 className="section-title left">Full-Service Wellness Center</h2>
-              <p className="split-text">
-                Our in-house wellness center stocks a comprehensive range of wellness supplements, generic alternatives, and health supplies — so you leave with everything you need after your consultation.
-              </p>
-              <ul className="feature-list">
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  10,000+ health supplies in stock
-                </li>
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Licensed care specialists on duty 24/7
-                </li>
-                <li>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  Affordable generic & branded options
-                </li>
-              </ul>
             </div>
           </div>
         </div>
@@ -515,85 +387,83 @@ export default function HomePage() {
 
       <section className="home-section alt-bg">
         <div className="home-section-inner">
-          <div className="section-header">
-            <span className="section-tag">Member Stories</span>
-            <h2 className="section-title">What Our Members Say</h2>
-            <p className="section-subtitle">
-              Real stories from real members who trusted Health Connect for their wellness journey.
-            </p>
-          </div>
-          <div className="testimonials-grid">
-            {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="testimonial-card">
-                <div className="testimonial-stars">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="var(--accent-amber)" stroke="none">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="testimonial-text">"{t.text}"</p>
-                <div className="testimonial-author">
-                  <div className="testimonial-avatar" style={{ background: t.color }}>
-                    {t.initials}
-                  </div>
-                  <div>
-                    <div className="testimonial-name">{t.name}</div>
-                    <div className="testimonial-role">{t.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="split-section reverse">
+            <div className="split-image">
+              <Image
+                src="/home/specialists.png"
+                alt="Certified maternal care specialist team"
+                fill
+                style={{ objectFit: "cover", borderRadius: "16px" }}
+              />
+            </div>
+            <div className="split-content">
+              <span className="section-tag">Expert Team</span>
+              <h2 className="section-title left">Certified Maternal Care Specialists</h2>
+              <p className="split-text">
+                Our 50+ certified OB-GYNs, midwives, and maternal health coordinators bring decades of combined experience in pregnancy, delivery, and postnatal care — with compassion at every step.
+              </p>
+              <ul className="feature-list">
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Board-certified OB-GYNs and midwives
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Average 12+ years of maternal care experience
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Specialists in high-risk pregnancies
+                </li>
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Trauma-informed and patient-first approach
+                </li>
+              </ul>
+              <Link href="/login" className="btn-home-primary">
+                Book a Specialist
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="home-cta-banner">
         <div className="home-section-inner" style={{ textAlign: "center" }}>
-          <h2 className="cta-title">Ready to Take Control of Your Health?</h2>
+          <h2 className="cta-title">Ready to Book Your Maternal Care?</h2>
           <p className="cta-subtitle">
-            Join thousands of members who manage their wellness digitally with Health Connect.
+            Join thousands of mothers who trust Health Connect for safe, coordinated maternal care — from first trimester to postnatal recovery.
           </p>
           <div className="cta-actions">
-            <a href="#" onClick={(e) => { e.preventDefault(); setShowComingSoon(true); }} className="btn-home-primary large">
+            <Link href="/login" className="btn-home-primary large">
               Book Your Appointment
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
               </svg>
-            </a>
-            <a href="tel:1800-HC-HELP" className="btn-home-outline large">
+            </Link>
+            <Link href="/admin" className="btn-home-outline large">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 5c-.11-1.09.63-2.17 1.81-2.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.09a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
               </svg>
-              Call Priority Line
-            </a>
+              Admin Portal
+            </Link>
           </div>
         </div>
       </section>
-
-      {showComingSoon && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.5)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 9999, backdropFilter: "blur(4px)" }}>
-          <div style={{ background: "var(--bg-card)", padding: "32px", borderRadius: "16px", maxWidth: "400px", width: "90%", textAlign: "center", boxShadow: "0 20px 40px rgba(0,0,0,0.2)", animation: "fadeInUp 0.3s ease" }}>
-            <div style={{ width: "48px", height: "48px", background: "rgba(14,165,233,0.1)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", color: "var(--accent-teal)" }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-            </div>
-            <h3 style={{ fontSize: "20px", fontWeight: 700, marginBottom: "8px", color: "var(--text-primary)" }}>Feature Coming Soon</h3>
-            <p style={{ fontSize: "14px", color: "var(--text-secondary)", marginBottom: "16px", lineHeight: 1.5 }}>
-              We're currently fine-tuning this feature to bring you the best wellness experience. Please check back later!
-            </p>
-            <div style={{ background: "rgba(14,165,233,0.07)", padding: "12px", borderRadius: "8px", border: "1px solid rgba(14,165,233,0.2)", marginBottom: "24px", fontSize: "12px", color: "var(--text-secondary)", lineHeight: 1.4 }}>
-              <strong>Note:</strong> For demo purposes, only the <strong>Member Portal</strong> and <strong>Admin Login</strong> features are currently active. You can access them via the navigation menu or footer.
-            </div>
-            <button onClick={() => setShowComingSoon(false)} style={{ width: "100%", padding: "12px", borderRadius: "8px", background: "var(--accent-teal)", color: "#fff", border: "none", fontWeight: 600, cursor: "pointer", transition: "all 0.2s" }}>
-              Got it, thanks!
-            </button>
-          </div>
-        </div>
-      )}
 
       <footer className="home-footer">
         <div className="home-section-inner">
@@ -611,7 +481,7 @@ export default function HomePage() {
                 </span>
               </div>
               <p className="footer-brand-text">
-                Bridging members and world-class care through technology. Compassionate wellness, digitally delivered.
+                Connecting mothers with certified maternal care specialists through smart, compassionate technology.
               </p>
               <div className="footer-socials">
                 <a href="#" className="footer-social" aria-label="Facebook">
@@ -644,23 +514,23 @@ export default function HomePage() {
             <div className="footer-col">
               <div className="footer-col-title">Services</div>
               <ul className="footer-links">
-                <li><a href="#services">General Medicine</a></li>
-                <li><a href="#services">Cardiology</a></li>
-                <li><a href="#services">Orthopedics</a></li>
-                <li><a href="#services">Neurology</a></li>
-                <li><a href="#services">Pediatrics</a></li>
-                <li><a href="#services">Oncology</a></li>
+                <li><a href="#services">Antenatal Care</a></li>
+                <li><a href="#services">Midwife Consultations</a></li>
+                <li><a href="#services">High-Risk Pregnancy</a></li>
+                <li><a href="#services">Postnatal Recovery</a></li>
+                <li><a href="#services">Lactation Support</a></li>
+                <li><a href="#services">Neonatal Care</a></li>
               </ul>
             </div>
 
             <div className="footer-col">
               <div className="footer-col-title">Quick Links</div>
               <ul className="footer-links">
-                <li><Link href="/login">Member Portal</Link></li>
+                <li><Link href="/login">Patient Portal</Link></li>
                 <li><Link href="/admin">Admin Login</Link></li>
+                <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#appointment">Book Appointment</a></li>
-                <li><a href="#specialists">Our Specialists</a></li>
-                <li><a href="#emergency">Emergency Support</a></li>
+                <li><a href="#services">Our Services</a></li>
               </ul>
             </div>
 
@@ -672,7 +542,7 @@ export default function HomePage() {
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                     <circle cx="12" cy="10" r="3" />
                   </svg>
-                  <span>123 Professional Avenue, Connect City, HC 400001</span>
+                  <span>123 Care Avenue, Connect City, HC 400001</span>
                 </li>
                 <li>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

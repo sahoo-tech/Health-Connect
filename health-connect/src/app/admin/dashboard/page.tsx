@@ -76,8 +76,8 @@ export default function AdminDashboard() {
         <>
             <Header role="admin" onLogout={handleLogout} />
             <div className="page-container">
-                <h1 className="page-title">All requests</h1>
-                <p className="page-subtitle">Review and manage booking requests</p>
+                <h1 className="page-title">Booking Requests</h1>
+                <p className="page-subtitle">Review and manage maternal care booking requests</p>
 
                 <div className="stats-row">
                     <div className="stat-card">
@@ -150,8 +150,13 @@ export default function AdminDashboard() {
                                         <div className="booking-card-id">
                                             {booking.booking_id}
                                             <span style={{ color: "var(--text-muted)", fontWeight: 400, fontSize: "13px", marginLeft: "12px" }}>
-                                                {booking.user_phone}
+                                                {booking.requester_name || booking.user_phone}
                                             </span>
+                                            {booking.provider_speciality && (
+                                                <span style={{ color: "var(--accent-teal)", fontWeight: 500, fontSize: "12px", marginLeft: "10px", background: "rgba(20,184,166,0.1)", padding: "2px 8px", borderRadius: "4px", border: "1px solid rgba(20,184,166,0.2)" }}>
+                                                    {booking.provider_speciality}
+                                                </span>
+                                            )}
                                         </div>
                                         <div className="booking-card-detail">
                                             <span>
