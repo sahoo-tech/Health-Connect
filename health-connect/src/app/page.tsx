@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 const SLIDES = [
   {
@@ -145,6 +146,7 @@ export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  useScrollReveal();
 
   const goToSlide = useCallback(
     (index: number) => {
@@ -177,11 +179,8 @@ export default function HomePage() {
     <div className="home-root">
       <nav className="home-nav">
         <Link href="/" className="home-nav-logo">
-          <div className="home-nav-logo-icon">
-            <svg width="20" height="20" viewBox="0 0 34 34" fill="none">
-              <rect x="14" y="2" width="6" height="30" rx="3" fill="white" />
-              <rect x="2" y="14" width="30" height="6" rx="3" fill="white" />
-            </svg>
+          <div className="home-nav-logo-icon" style={{ background: "transparent" }}>
+            <Image src="/robotech-logo.png" alt="ROBOTECH" width={28} height={28} style={{ objectFit: "contain" }} />
           </div>
           <span className="home-nav-logo-text">
             Health <span>Connect</span>
@@ -192,6 +191,7 @@ export default function HomePage() {
           <a href="#services" className="home-nav-link" onClick={() => setMenuOpen(false)}>Services</a>
           <a href="#how-it-works" className="home-nav-link" onClick={() => setMenuOpen(false)}>How It Works</a>
           <a href="#appointment" className="home-nav-link" onClick={() => setMenuOpen(false)}>Appointment</a>
+          <Link href="/about" className="home-nav-link" onClick={() => setMenuOpen(false)}>About Us</Link>
           <Link href="/admin" className="home-nav-cta home-nav-cta-admin" onClick={() => setMenuOpen(false)}>
             Admin Login
           </Link>
@@ -232,7 +232,7 @@ export default function HomePage() {
             <span className="hero-tag">{slide.tag}</span>
             <h1 className="hero-title">{slide.title}</h1>
             <p className="hero-subtitle">{slide.subtitle}</p>
-            <Link href="/login" className="hero-cta">
+            <Link href="/login" className="hero-cta" data-magnetic>
               {slide.cta}
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
@@ -267,8 +267,8 @@ export default function HomePage() {
 
       <section className="stats-strip">
         <div className="stats-inner">
-          {STATS.map((s) => (
-            <div key={s.label} className="stat-item">
+          {STATS.map((s, i) => (
+            <div key={s.label} className={`stat-item reveal reveal-delay-${(i % 4) + 1}`}>
               <div className="stat-value">{s.value}</div>
               <div className="stat-label">{s.label}</div>
             </div>
@@ -286,8 +286,8 @@ export default function HomePage() {
             </p>
           </div>
           <div className="services-grid">
-            {SERVICES.map((svc) => (
-              <div key={svc.title} className="service-card">
+            {SERVICES.map((svc, i) => (
+              <div key={svc.title} className={`service-card reveal reveal-delay-${(i % 3) + 1}`} data-magnetic>
                 <div className="service-icon">{svc.icon}</div>
                 <h3 className="service-title">{svc.title}</h3>
                 <p className="service-desc">{svc.description}</p>
@@ -315,7 +315,7 @@ export default function HomePage() {
           </div>
           <div className="how-it-works-grid">
             {HOW_IT_WORKS.map((step, i) => (
-              <div key={step.step} className="hiw-card">
+              <div key={step.step} className={`hiw-card reveal reveal-delay-${i + 1}`}>
                 <div className="hiw-step-num" style={{ color: step.color, borderColor: step.color, background: `${step.color}14` }}>
                   {step.step}
                 </div>
@@ -365,7 +365,7 @@ export default function HomePage() {
                   Admin assigns final confirmed slot
                 </li>
               </ul>
-              <Link href="/login" className="btn-home-primary">
+              <Link href="/login" className="btn-home-primary" data-magnetic>
                 Book Your Appointment
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12" />
@@ -447,7 +447,7 @@ export default function HomePage() {
             Join thousands of mothers who trust Health Connect for safe, coordinated maternal care — from first trimester to postnatal recovery.
           </p>
           <div className="cta-actions">
-            <Link href="/login" className="btn-home-primary large">
+            <Link href="/login" className="btn-home-primary large" data-magnetic>
               Book Your Appointment
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
@@ -470,11 +470,8 @@ export default function HomePage() {
           <div className="footer-grid">
             <div className="footer-col brand-col">
               <div className="home-nav-logo" style={{ marginBottom: "16px" }}>
-                <div className="home-nav-logo-icon">
-                  <svg width="20" height="20" viewBox="0 0 34 34" fill="none">
-                    <rect x="14" y="2" width="6" height="30" rx="3" fill="white" />
-                    <rect x="2" y="14" width="30" height="6" rx="3" fill="white" />
-                  </svg>
+                <div className="home-nav-logo-icon" style={{ background: "transparent" }}>
+                  <Image src="/robotech-logo.png" alt="ROBOTECH" width={28} height={28} style={{ objectFit: "contain" }} />
                 </div>
                 <span className="home-nav-logo-text">
                   Health <span>Connect</span>

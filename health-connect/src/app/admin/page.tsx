@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Toast from "@/components/Toast";
 import { API_BASE } from "@/lib/api";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 export default function AdminLogin() {
     const router = useRouter();
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [toast, setToast] = useState<{ message: string; type: "success" | "error" | "info" } | null>(null);
+    useScrollReveal();
 
     useEffect(() => {
         const stored = sessionStorage.getItem("hc_admin");
@@ -62,7 +64,7 @@ export default function AdminLogin() {
                 </div>
             </div>
 
-            <div className="card">
+            <div className="card reveal">
                 <div className="card-header">
                     <div className="card-title">Admin login</div>
                     <div className="card-description">Enter your credentials to continue</div>
@@ -82,7 +84,8 @@ export default function AdminLogin() {
                     className="btn btn-full btn-lg"
                     onClick={handleLogin}
                     disabled={loading || !password}
-                    style={{ background: "linear-gradient(135deg, #a855f7 0%, #6366f1 100%)", color: "white", boxShadow: "0 2px 12px rgba(168, 85, 247, 0.3)" }}
+                    data-magnetic
+                    style={{ background: "linear-gradient(135deg, #c084fc 0%, #818cf8 100%)", color: "white", boxShadow: "0 4px 20px rgba(192, 132, 252, 0.4)", fontFamily: "var(--font-display)" }}
                 >
                     {loading ? <span className="spinner"></span> : "Continue"}
                 </button>

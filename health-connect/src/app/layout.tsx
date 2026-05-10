@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import CursorEffect from "@/components/CursorEffect";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 export const metadata: Metadata = {
-  title: "Health Connect",
-  description: "Simple booking coordination platform",
+  title: "Health Connect — Maternal Care Platform",
+  description: "Book and manage maternal care appointments with certified specialists.",
 };
 
 export default function RootLayout({
@@ -32,6 +34,8 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <AnimatedBackground />
+        <CursorEffect />
         <div className="app-container">
           {children}
         </div>

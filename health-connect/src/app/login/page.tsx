@@ -3,8 +3,10 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Toast from "@/components/Toast";
 import { API_BASE } from "@/lib/api";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -14,6 +16,7 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false);
     const [toast, setToast] = useState<{ message: string; type: "success" | "error" | "info" } | null>(null);
     const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
+    useScrollReveal();
 
     useEffect(() => {
         const stored = sessionStorage.getItem("hc_user");
@@ -115,11 +118,8 @@ export default function LoginPage() {
             </div>
 
             <div className="login-hero">
-                <div className="login-hero-mark">
-                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-                        <rect x="14" y="2" width="6" height="30" rx="3" fill="white" />
-                        <rect x="2" y="14" width="30" height="6" rx="3" fill="white" />
-                    </svg>
+                <div className="login-hero-mark" style={{ background: "transparent" }}>
+                    <Image src="/robotech-logo.png" alt="ROBOTECH" width={48} height={48} style={{ objectFit: "contain" }} />
                 </div>
                 <h1>
                     Health <span>Connect</span>
@@ -130,7 +130,7 @@ export default function LoginPage() {
                 </div>
             </div>
 
-            <div className="card">
+            <div className="card reveal">
                 {step === "phone" && (
                     <>
                         <div className="card-header">
@@ -156,6 +156,7 @@ export default function LoginPage() {
                             className="btn btn-primary btn-full btn-lg"
                             onClick={handleSendOtp}
                             disabled={loading || phone.length < 10}
+                            data-magnetic
                         >
                             {loading ? <span className="spinner"></span> : "Send code"}
                         </button>
@@ -239,6 +240,7 @@ export default function LoginPage() {
                             className="btn btn-primary btn-full btn-lg"
                             onClick={handleVerifyOtp}
                             disabled={loading || otp.join("").length !== 4}
+                            data-magnetic
                         >
                             {loading ? <span className="spinner"></span> : "Verify & continue"}
                         </button>

@@ -7,12 +7,14 @@ import Header from "@/components/Header";
 import StatusBadge from "@/components/StatusBadge";
 import { Booking, BookingStatus } from "@/lib/types";
 import { API_BASE } from "@/lib/api";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 export default function AdminDashboard() {
     const router = useRouter();
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState<string>("All");
+    useScrollReveal();
 
     const loadBookings = useCallback(async () => {
         const res = await fetch(`${API_BASE}/api/bookings`);
@@ -80,19 +82,19 @@ export default function AdminDashboard() {
                 <p className="page-subtitle">Review and manage maternal care booking requests</p>
 
                 <div className="stats-row">
-                    <div className="stat-card">
+                    <div className="stat-card reveal reveal-delay-1">
                         <div className="stat-value teal">{counts.total}</div>
                         <div className="stat-label">Total</div>
                     </div>
-                    <div className="stat-card">
+                    <div className="stat-card reveal reveal-delay-2">
                         <div className="stat-value amber">{counts.pending}</div>
                         <div className="stat-label">Awaiting</div>
                     </div>
-                    <div className="stat-card">
+                    <div className="stat-card reveal reveal-delay-3">
                         <div className="stat-value green">{counts.confirmed}</div>
                         <div className="stat-label">Confirmed</div>
                     </div>
-                    <div className="stat-card">
+                    <div className="stat-card reveal reveal-delay-4">
                         <div className="stat-value red">{counts.rejected}</div>
                         <div className="stat-label">Rejected</div>
                     </div>
@@ -143,7 +145,7 @@ export default function AdminDashboard() {
                                 <Link
                                     key={booking.booking_id}
                                     href={`/admin/booking/${booking.booking_id}`}
-                                    className="booking-card"
+                                    className="booking-card reveal"
                                     style={{ animationDelay: `${i * 0.04}s` }}
                                 >
                                     <div className="booking-card-left">

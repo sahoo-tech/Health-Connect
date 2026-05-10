@@ -8,6 +8,7 @@ import StatusBadge from "@/components/StatusBadge";
 import Toast from "@/components/Toast";
 import { Booking } from "@/lib/types";
 import { API_BASE } from "@/lib/api";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 export default function PatientDashboard() {
     const router = useRouter();
@@ -15,6 +16,7 @@ export default function PatientDashboard() {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState<{ id: string; phone_number: string; name?: string } | null>(null);
     const [toast, setToast] = useState<{ message: string; type: "success" | "error" | "info" } | null>(null);
+    useScrollReveal();
 
     const loadBookings = useCallback(async (userId: string) => {
         const res = await fetch(`${API_BASE}/api/bookings?userId=${userId}`);
@@ -71,7 +73,7 @@ export default function PatientDashboard() {
                             {user.phone_number}
                         </p>
                     </div>
-                    <Link href="/requester/book" className="btn btn-primary">
+                    <Link href="/requester/book" className="btn btn-primary" data-magnetic>
                         Request slot
                     </Link>
                 </div>
@@ -104,7 +106,7 @@ export default function PatientDashboard() {
                             <Link
                                 key={booking.booking_id}
                                 href={`/requester/booking/${booking.booking_id}`}
-                                className="booking-card"
+                                className="booking-card reveal"
                                 style={{ animationDelay: `${i * 0.05}s` }}
                             >
                                 <div className="booking-card-left">
